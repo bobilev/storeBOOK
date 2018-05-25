@@ -6,6 +6,6 @@ import (
 )
 
 func TMPIndex(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("tmp/index.html")
+	t, _ := template.ParseFiles("front/index.html")
 	t.Execute(w, nil)
 }

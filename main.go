@@ -1,18 +1,17 @@
 package main
 
 import (
-	"os"
-	"log"
 	"fmt"
 	"net/http"
 	"github.com/bobilev/storeBOOK/handler"
 )
 
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("$PORT must be set")
-	}
+	port := "8080"
+	//port := os.Getenv("PORT")
+	//if port == "" {
+	//	log.Fatal("$PORT must be set")
+	//}
 
 
 	//err := dbwork.CreateAllTable()
