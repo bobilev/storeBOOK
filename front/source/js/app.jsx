@@ -1,4 +1,4 @@
-import React, { Component }from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import LeftBar from './LeftBar.jsx'
 import Content from './Content.jsx'

@@ -5,23 +5,87 @@ body {
 }
 
 #main {
-  //border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   justify-content: center; //горизонтали
-  align-items: center;     //вертикали
 }
-
+#main_center {
+  margin: 20px;
+}
 #leftbar {
   display: inline-block;
   width: 200px;
   height: 500px;
   background-color: #fff;
   margin: 20px;
+
+  img {
+    width:  150px;
+    height: 150px;
+    margin: 20px;
+    border-radius: 50%;
+  }
+}
+#filtr {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  img {
+    width: 25px;
+    margin: 10px;
+  }
 }
 #content {
   display: inline-block;
   width: 800px;
-  height: 500px;
+  // height: 500px;
   background-color: #fff;
-  margin: 20px;
+  //margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+#store {
+  margin: 10px;
+  width: 180px;
+  height: 250px;
+  background: rgb(164, 125, 193);
+  cursor: pointer;
+  .storeIconSetting {
+    display: none;
+    // cursor: pointer;
+    img {
+      width:  35px;
+      // height: 35px;
+      margin: 7px;
+      float: right;
+    }
+
+  }
+  &:hover .storeIconSetting {
+    display: block;
+  }
+}
+
+#newstore {
+  margin: 10px;
+  width: 170px;
+  height: 240px;
+  border: 5px solid rgb(191, 191, 191);
+  display: flex;
+  justify-content: center; //горизонтали
+  align-items: center;
+  cursor: pointer;
+  .storeIconaddNewStore {
+    // margin: 0 auto;
+    img {
+      width:  35px;
+      height: 35px;
+    }
+  }
+}
+#filtr {
+  height: 50px;
+  background-color: #fff;
 }

@@ -1,2 +1,43 @@
 body {
-  background: #c0e830; }
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1; }
+
+#main {
+  display: flex;
+  justify-content: center; }
+
+#leftbar {
+  display: inline-block;
+  width: 200px;
+  height: 500px;
+  background-color: #fff;
+  margin: 20px; }
+  #leftbar img {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+    border-radius: 50%; }
+
+#content {
+  display: inline-block;
+  width: 800px;
+  background-color: #fff;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap; }
+
+#store {
+  margin: 10px;
+  width: 180px;
+  height: 300px;
+  background: #a47dc1; }
+  #store :hover .storeicon {
+    display: block; }
+
+.storeicon {
+  display: none;
+  width: 30px;
+  height: 30px;
+  margin: 7px;
+  float: right; }

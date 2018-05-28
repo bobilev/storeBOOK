@@ -6,6 +6,7 @@
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-modal": "^3.4.4",
     "webpack": "^4.8.3"
   },
   "devDependencies": {
