@@ -3,6 +3,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+  mode: "development",
   entry: {
         home: [
             __dirname + '/source/js/app.jsx',
@@ -10,9 +11,11 @@ module.exports = {
         ],
       },
   output: {
+    publicPath: 'dist/',
     path: __dirname + '/dist',
     filename: 'build.js',
   },
+  devtool: 'eval-sourcemap',
   module: {
     rules: [
       {
@@ -31,6 +34,12 @@ module.exports = {
         })
       }
     ]
+  },
+  performance: { hints: false },//убераем лимит на размер главного файла
+  devServer: {
+    stats: 'errors-only',
+    host: 'localhost',
+    port: 8080
   },
   plugins: [
     new ExtractTextPlugin("styles.css")

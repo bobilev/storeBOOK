@@ -1,3 +1,5 @@
 .gitignore
 .idea
 front/node_modules
+front/dist/build.js.map
+front/dist/styles.css.map
