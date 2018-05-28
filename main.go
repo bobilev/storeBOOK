@@ -22,7 +22,7 @@ func main() {
 	http.HandleFunc("/", handler.TMPIndex)
 
 
-	http.Handle("/front/", http.StripPrefix("/front/", http.FileServer(http.Dir("./front/"))))
+	http.Handle("/dist/", http.StripPrefix("/dist/", http.FileServer(http.Dir("./front/dist"))))
 	http.ListenAndServe(":" + port, nil)
 }
 func checkErr(err error) {
