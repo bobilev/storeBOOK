@@ -11,30 +11,28 @@ class ModalSetting extends Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
-
   handleOpenModal () {
     this.setState({ showModal: true });
   }
-
   handleCloseModal () {
     this.setState({ showModal: false });
   }
-
   render () {
     return (
       <div className='storeIconaddNewStore'>
         <img src='/dist/icon/addNewStore.png' onClick={this.handleOpenModal}/>
-        <ReactModal
-           isOpen={this.state.showModal}
-           contentLabel="Minimal Modal Example"
+        <ReactModal 
+            className="Modal" overlayClassName="Overlay" contentLabel="Minimal Modal Example"
+            isOpen={this.state.showModal} onRequestClose={this.handleCloseModal}
         >
-          <button onClick={this.handleCloseModal}>Close Modal</button>
+          <p>Modal text!</p>
+          <button onClick={this.handleCloseModal}>Close</button>
         </ReactModal>
       </div>
     );
   }
 }
-// ReactModal.setAppElement('#reactmodal');
+
 class NewStore extends Component {
   render() {
     return(

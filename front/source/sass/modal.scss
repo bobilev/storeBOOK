@@ -1,0 +1,20 @@
+.Modal {
+  $modalWidth: 600px;
+  $modalHeight: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: $modalWidth;
+  height: $modalHeight;
+  margin: (-$modalHeight/2) 0 0 (-$modalWidth/2);
+  background-color: #fff;
+  outline: 1px solid #fff;
+}
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(218, 218, 218, 0.55);
+}
