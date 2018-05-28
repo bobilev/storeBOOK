@@ -28,16 +28,16 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
           //fallback: "style-loader",
           use: ['css-loader', 'sass-loader']
-        })
+        })),
       }
     ]
   },
   performance: { hints: false },//убераем лимит на размер главного файла
   devServer: {
-    stats: 'errors-only',
+    //stats: 'errors-only',
     host: 'localhost',
     port: 8080
   },

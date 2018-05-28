@@ -1,5 +1,27 @@
-$bg-color: rgb(192, 232, 48);
-
 body {
- background: $bg-color;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(241, 241, 241);
+}
+
+#main {
+  //border: 1px solid red;
+  display: flex;
+  justify-content: center; //горизонтали
+  align-items: center;     //вертикали
+}
+
+#leftbar {
+  display: inline-block;
+  width: 200px;
+  height: 500px;
+  background-color: #fff;
+  margin: 20px;
+}
+#content {
+  display: inline-block;
+  width: 800px;
+  height: 500px;
+  background-color: #fff;
+  margin: 20px;
 }

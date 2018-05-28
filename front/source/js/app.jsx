@@ -1,10 +1,17 @@
 import React, { Component }from 'react';
 import ReactDOM from 'react-dom';
+import LeftBar from './LeftBar.jsx'
+import Content from './Content.jsx'
 
 class Main extends Component {
     render() {
-        return (<div>Hello world1</div>);
+        return (
+          <div id='main'>
+            <LeftBar />
+            <Content />
+          </div>
+        );
     }
 }
 
-ReactDOM.render(<Main />,document.getElementById('main'));
+ReactDOM.render(<Main />,document.getElementById('app'));
