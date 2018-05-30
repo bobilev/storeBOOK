@@ -1,5 +1,5 @@
 'use strict'
-
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react'],
+          presets: ['es2015', 'react', 'react-hmre'],
         }
       },
       {
@@ -42,6 +42,6 @@ module.exports = {
     port: 8080
   },
   plugins: [
-    new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin("styles.css"),
   ]
 };

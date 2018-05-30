@@ -1,3 +1,5 @@
+@import "input";
+
 .Modal {
   $modalWidth: 600px;
   $modalHeight: 400px;
@@ -17,4 +19,23 @@
   right: 0;
   bottom: 0;
   background-color: rgba(218, 218, 218, 0.55);
+}
+.closeModal {
+  border: 0;
+  width: 40px;
+  height: 40px;
+  // float: right;
+  margin: 10px;
+  text-align: center;
+}
+.settingOne {
+  // border: 1px solid red;
+  // width: 600px;
+  // height: 300px;
+}
+.settingTwo {
+  // border: 1px solid red;
+}
+.settingThree {
+  // border: 1px solid red;
 }
