@@ -1,17 +1,15 @@
 $main-color: #F44336;
 $secondary-color: white;
 $main-color: #333;
-$secondary-color: #2196f3;
+$secondary-color: rgba(#2196f4, 0.76);
 $width: 350px; // Change Me
 
 * {
   box-sizing: border-box;
 }
 
-// body {background: $main-color;}
-
 .group {
-  width: 90%;
+  // width: 100%;
   height: $width/5;
   overflow: hidden;
   position: relative;
@@ -22,7 +20,7 @@ label {
   position: absolute;
   top: $width/15;
   color: rgba(black, .5);
-  font: 400 $width/15 Roboto;
+  font: 400 $width/15 sans-serif;
   cursor: text;
   transition: .25s ease;
 }
@@ -42,7 +40,7 @@ input {
     // border-bottom-color: rgba(white, .5);
     ~label {
       top: 0;
-      font: 700 $width/25 Roboto;
+      font: 700 $width/25 sans-serif;
       // color: rgba(white, .5);
     }
   }
@@ -51,17 +49,14 @@ input {
     // border-bottom-color: $secondary-color;
     ~label {
       top: 0;
-      font: 700 $width/25 Roboto;
+      font: 700 $width/25 sans-serif;
       color: $secondary-color;
     }
-
 
     ~ .bar:before {
     transform: translateX(0);
     }
   }
-
-  // Stop Chrome's hideous pale yellow background on auto-fill
 
   &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px $main-color inset;

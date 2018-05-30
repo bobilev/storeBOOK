@@ -1,23 +1,45 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import AutocompleteExample from './autocomplete.jsx';
+
 
 class NewStoreSetting extends Component {
   render() {
     return(
       <div>
-        <div className='settingOne'>
-          <div class="group">
-            <input type="text" id="name" required="required"/>
-            <label for="name">Название рассказа</label>
-            <div class="bar"></div>
-          </div>
-        </div>
-        <div className='settingTwo'>
-          setting 2
-        </div>
-        <div className='settingThree'>
-          setting 3
-        </div>
+        <Tabs>
+          <TabList>
+            <Tab>Title 1</Tab>
+            <Tab>Title 2</Tab>
+            <Tab>Title 3</Tab>
+          </TabList>
+          <TabPanel>
+            <div className='settingOne'>
+              <div className="group">
+                <input type="text" id="name" required="required"/>
+                <label htmlFor="name">Название рассказа</label>
+                <div className="bar"></div>
+              </div>
+              Категория
+              <br/>-----------<br/><br/>
+              Жанр
+              <AutocompleteExample />
+              Рейтин+
+              <AutocompleteExample />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className='settingTwo'>
+              setting 2
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className='settingThree'>
+              setting 3
+            </div>
+          </TabPanel>
+        </Tabs>
       </div>
     );
   }
@@ -47,7 +69,7 @@ class ModalSetting extends Component {
             className="Modal" overlayClassName="Overlay" contentLabel="Minimal Modal Example"
             isOpen={this.state.showModal} onRequestClose={this.handleCloseModal}
         >
-          <button className='closeModal' onClick={this.handleCloseModal}>X</button>
+
           <NewStoreSetting />
 
         </ReactModal>
