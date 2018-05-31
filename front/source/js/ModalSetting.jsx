@@ -1,45 +1,18 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import AutocompleteExample from './autocomplete.jsx';
 
 
 class NewStoreSetting extends Component {
+  callback(key) {
+    console.log(key);
+  }
   render() {
     return(
       <div>
-        <Tabs>
-          <TabList>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
-            <Tab>Title 3</Tab>
-          </TabList>
-          <TabPanel>
-            <div className='settingOne'>
-              <div className="group">
-                <input type="text" id="name" required="required"/>
-                <label htmlFor="name">Название рассказа</label>
-                <div className="bar"></div>
-              </div>
-              Категория
-              <br/>-----------<br/><br/>
-              Жанр
-              <AutocompleteExample />
-              Рейтин+
-              <AutocompleteExample />
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className='settingTwo'>
-              setting 2
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div className='settingThree'>
-              setting 3
-            </div>
-          </TabPanel>
-        </Tabs>
+      
+      <AutocompleteExample />
+
       </div>
     );
   }

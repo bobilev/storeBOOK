@@ -15,7 +15,7 @@ module.exports = {
     path: __dirname + '/dist',
     filename: 'build.js',
   },
-  devtool: 'eval-sourcemap',
+  // devtool: 'eval-sourcemap',
   module: {
     rules: [
       {

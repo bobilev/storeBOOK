@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import TagsInput from 'react-tagsinput'
-import Autosuggest from 'react-autosuggest'
+import React,{ Component } from 'react';
 
 function states () {
   return [
@@ -47,52 +45,82 @@ function states () {
   ]
 }
 
-class AutocompleteExample extends Component {
-  constructor () {
-    super()
-    this.state = {tags: []}
-  }
+import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-  handleChange (tags) {
-    this.setState({tags})
-  }
-
-  render () {
-    function autocompleteRenderInput ({addTag, ...props}) {
-      const handleOnChange = (e, {newValue, method}) => {
-        if (method === 'enter') {
-          e.preventDefault()
-        } else {
-          props.onChange(e)
-        }
-      }
-
-      const inputValue = (props.value && props.value.trim().toLowerCase()) || ''
-      const inputLength = inputValue.length
-
-      let suggestions = states().filter((state) => {
-        return state.name.toLowerCase().slice(0, inputLength) === inputValue
-      })
-
-      return (
-        <Autosuggest
-          ref={props.ref}
-          suggestions={suggestions}
-          shouldRenderSuggestions={(value) => value && value.trim().length > 0}
-          getSuggestionValue={(suggestion) => suggestion.name}
-          renderSuggestion={(suggestion) => <span>{suggestion.name}</span>}
-          inputProps={{...props, onChange: handleOnChange}}
-          onSuggestionSelected={(e, {suggestion}) => {
-            addTag(suggestion.name)
-          }}
-          onSuggestionsClearRequested={() => {}}
-          onSuggestionsFetchRequested={() => {}}
-        />
-      )
-    }
-
-    return <TagsInput renderInput={autocompleteRenderInput} value={this.state.tags} onChange={::this.handleChange} />
-  }
+function TabContainer({ children, dir }) {
+  return (
+    <Typography component="div" style={{ padding: 8 * 3 }}>
+      {children}
+    </Typography>
+  );
 }
 
-export default AutocompleteExample
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+class AutocompleteExample extends Component {
+  state = {
+      value: 0,
+    };
+
+    handleChange = (event, value) => {
+      this.setState({ value });
+    };
+
+    handleChangeIndex = index => {
+      this.setState({ value: index });
+    };
+    onClikb =()=> {
+      console.log("onclick");
+      this.setState({ value: 1 });
+    }
+    render() {
+
+      return (
+        <div>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={this.state.value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              fullWidth
+            >
+              <Tab label="Item One" />
+              <Tab label="Item Two" />
+              <Tab label="Item Three" />
+            </Tabs>
+          </AppBar>
+          <SwipeableViews
+
+            index={this.state.value}
+            onChangeIndex={this.handleChangeIndex}
+          >
+            <TabContainer>
+              Item One
+              <Button
+
+              onClick={this.onClikb}
+                variant="raised"
+                color="primary"
+              >
+                Primary
+              </Button>
+            </TabContainer>
+            <TabContainer>Item Two</TabContainer>
+            <TabContainer>Item Three</TabContainer>
+          </SwipeableViews>
+        </div>
+      );
+    }
+
+}
+
+export default AutocompleteExample;
