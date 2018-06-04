@@ -1,22 +1,6 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
-import AutocompleteExample from './autocomplete.jsx';
-
-
-class NewStoreSetting extends Component {
-  callback(key) {
-    console.log(key);
-  }
-  render() {
-    return(
-      <div>
-      
-      <AutocompleteExample />
-
-      </div>
-    );
-  }
-}
+import NewStoreSetting from './NewStoreSetting.jsx';
 
 class ModalSetting extends Component {
   constructor() {

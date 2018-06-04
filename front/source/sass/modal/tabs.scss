@@ -1,3 +1,20 @@
-.TabContainer1 {
-  background-color: red;
+.TabContainer {
+  text-align: center;
+  // display: flex;
+  // background-color: red;
+  // height: 70%;
+}
+
+.TabContainer-input {
+  width: 400px;
+}
+.TabContainer2-input {
+  width: 80%;
+  overflow:  hidden;
+}
+.btnTabs {
+  position: absolute!important;
+  bottom: 0;
+  right: 0;
+  margin: 20px!important;
 }
