@@ -55,19 +55,41 @@ body {
   height: 250px;
   background: rgb(164, 125, 193);
   cursor: pointer;
+  position: relative;
+  img {
+    height: 100%;
+    width: 100%;
+  }
   .storeIconSetting {
     display: none;
+    float: right;
+    position: absolute;
+    right: 5px;
+    top: 5px;
     // cursor: pointer;
     img {
       width:  35px;
       // height: 35px;
-      margin: 7px;
-      float: right;
+      // margin: 7px;
+      // float: right;
     }
 
   }
   &:hover .storeIconSetting {
     display: block;
+  }
+  .storeName {
+    padding: 10px;
+    width: 160px;
+    background: #e0dede;
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    vertical-align: middle;
+    // text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 

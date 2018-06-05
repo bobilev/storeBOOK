@@ -7,6 +7,8 @@ class Store extends Component {
         <div className='storeIconSetting'>
           <img src='/dist/icon/settings.png' />
         </div>
+
+        <div className="storeName"><span>{this.props.name}</span></div>
       </div>
     );
   }

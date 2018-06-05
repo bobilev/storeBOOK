@@ -12,6 +12,13 @@
   width: 80%;
   overflow:  hidden;
 }
+#Tooltip {
+  background-color: red;
+  width: 50px;
+  span {
+    width: 100%;
+  }
+}
 .btnTabs {
   position: absolute!important;
   bottom: 0;
