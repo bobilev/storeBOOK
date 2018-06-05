@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Store from './Store.jsx'
 import NewStore from './NewStore.jsx'
 import { hot } from 'react-hot-loader'

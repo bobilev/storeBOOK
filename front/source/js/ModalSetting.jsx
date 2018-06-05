@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import ReactModal from 'react-modal';
-import NewStoreSetting from './NewStoreSetting.jsx';
+import React, { Component } from 'react'
+import ReactModal from 'react-modal'
+import NewStoreSetting from './NewStoreSetting.jsx'
 
 class ModalSetting extends Component {
   constructor() {

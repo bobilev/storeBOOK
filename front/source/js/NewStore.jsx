@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import ModalSetting from './ModalSetting.jsx'
 
 class NewStore extends Component {
@@ -9,7 +9,7 @@ class NewStore extends Component {
       </div>
     );
   }
-  
+
 }
 
 export default NewStore;

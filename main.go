@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	port := "8080"
+	port := "3000"
 	//port := os.Getenv("PORT")
 	//if port == "" {
 	//	log.Fatal("$PORT must be set")
@@ -20,6 +20,7 @@ func main() {
 	fmt.Println("[server start] port:",port)
 
 	http.HandleFunc("/", handler.TMPIndex)
+	http.HandleFunc("/api", handler.API)
 
 
 	http.Handle("/dist/", http.StripPrefix("/dist/", http.FileServer(http.Dir("./front/dist"))))
