@@ -105,9 +105,9 @@ class NewStoreSetting extends Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>
-              <Tooltip id="Tooltip" placement="right" enterDelay={500} title="1AddAd dA0\rsdf sdf" >
-                <span>Ten</span>
+            <MenuItem id="elemSelectMenu" value={10}>
+              <Tooltip id="Tooltip" placement="right" enterDelay={200} title="1AddAd dA0\rsdf sdf" >
+                <span className="elemSelectMenuspan">Ten</span>
               </Tooltip>
             </MenuItem>
 
