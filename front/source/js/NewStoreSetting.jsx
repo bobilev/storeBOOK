@@ -17,6 +17,7 @@ class NewStoreSetting extends Component {
     age: '',
     open: false,
     value: 0,
+    textBtn: "Дальше",
     name: "",
     multiline: "",
     nextBool: true,
@@ -48,7 +49,13 @@ class NewStoreSetting extends Component {
   }
   onClikb = () => {
     console.log("onclick");
-    this.setState({value: 1});
+    if (this.state.value == 0) {
+      this.setState({value: 1});
+    }
+    if (this.state.value == 1) {
+      this.setState({value: 2,textBtn: "Готово"});
+    }
+
   }
   handleChangeTextField = name => event => {
     this.setState({[name]: event.target.value});
@@ -70,7 +77,7 @@ class NewStoreSetting extends Component {
         variant="raised"
         color="primary"
         disabled={this.state.nextBool}>
-        Дальше
+        {this.state.textBtn}
       </Button>;
     const nameStore =
       <TextField
