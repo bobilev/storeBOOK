@@ -29,9 +29,15 @@
   height: 100%;
   // margin: 12px 16px 12px 16px;
 }
-.btnTabs {
+.btnTabNext {
   position: absolute!important;
   bottom: 0;
   right: 0;
+  margin: 20px!important;
+}
+.btnTabBack {
+  position: absolute!important;
+  bottom: 0;
+  right: 100px;
   margin: 20px!important;
 }

@@ -14,12 +14,12 @@ import Tooltip from '@material-ui/core/Tooltip'
 
 class NewStoreSetting extends Component {
   state = {
-    age: '',
+    nameStore: "",
+    directionStore: '',
+    descriptionStore: "",
     open: false,
-    value: 0,
+    tabIndex: 0,
     textBtn: "Дальше",
-    name: "",
-    multiline: "",
     nextBool: true,
     tooltipopen: false
 
@@ -31,70 +31,103 @@ class NewStoreSetting extends Component {
   handleOpen = () => {
     this.setState({open: true});
   };
-  handleChange = (event, value) => {
-    this.setState({value});
-  }
+  // handleChange = (event, value) => {
+  //   this.setState({value});
+  // }
   handleChangeIndex = index => {
-    this.setState({value: index});
+    this.setState({tabIndex: index});
   }
   handleChangeSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleTooltipClose = () => {
-    this.setState({ tooltipopen: false });
-  }
-  handleTooltipOpen = () => {
-    this.setState({ tooltipopen: true });
-  }
-  onClikb = () => {
+  onClikNext = () => {
     console.log("onclick");
-    if (this.state.value == 0) {
-      this.setState({value: 1});
+    if (this.state.tabIndex == 0) {
+      this.setState({tabIndex: 1});
     }
-    if (this.state.value == 1) {
-      this.setState({value: 2,textBtn: "Готово"});
+    if (this.state.tabIndex == 1) {
+      this.setState({tabIndex: 2,textBtn: "Готово"});
+    }
+    if (this.state.tabIndex == 2) {//Тут создаю новый Store в DB , закрываю окно настроек и запускаю редактор.
+      console.log("done");
     }
 
   }
-  handleChangeTextField = name => event => {
-    this.setState({[name]: event.target.value});
-    if (this.state.name.lenght == "") {
-      this.setState({nextBool: true});
-    } else {
-      this.setState({nextBool: false});
+  onClikBack = () => {
+    if (this.state.tabIndex == 1) {
+      this.setState({tabIndex: 0});
+    }
+    if (this.state.tabIndex == 2) {
+      this.setState({tabIndex: 1});
     }
   }
+  handleChangeTextField = name => event => {
+    const {nameStore,directionStore,descriptionStore} = this.state;
+    this.setState({[name]: event.target.value});
+
+  }
   render() {
-    let nextBool = false;
-    if (name !== "") {
-      nextBool = true;
+    const {
+      nameStore,
+      directionStore,
+      descriptionStore,
+      open,
+      tabIndex,
+      textBtn,
+      nextBool,
+      tooltipopen
+    } = this.state;
+
+    if (nameStore == "" || directionStore == "") {
+      console.log("nextBool: true")
+      if(!nextBool) {
+        this.setState({nextBool: true})
+      }
+    } else {
+      console.log("nextBool: false")
+      if(nextBool) {
+        this.setState({nextBool: false})
+      }
     }
-    const button =
+
+
+    const buttonNext =//next
       <Button
-        className="btnTabs"
-        onClick={this.onClikb}
+        className="btnTabNext"
+        onClick={this.onClikNext}
         variant="raised"
         color="primary"
-        disabled={this.state.nextBool}>
-        {this.state.textBtn}
+        disabled={nextBool}>
+        {textBtn}
       </Button>;
-    const nameStore =
+    function buttonBack() {
+      if (tabIndex != 0) {
+        return (<Button
+          className="btnTabBack"
+          onClick={this.onClikBack}
+          variant="raised"
+          color="primary">
+          Назад
+        </Button>);
+      }
+    }
+    const nameStoreTextField =
       <TextField
         id="name"
         label="Название"
         className="TabContainer-input"
-        value={this.state.name}
-        onChange={this.handleChangeTextField('name')}
+        value={nameStore}
+        onChange={this.handleChangeTextField('nameStore')}
         margin="normal"
       />
-    const descriptionStore =
+    const descriptionStoreTextField =
       <TextField
         label="Описание"
         multiline
         rowsMax="12"
-        value={this.state.multiline}
-        onChange={this.handleChangeTextField('multiline')}
+        value={descriptionStore}
+        onChange={this.handleChangeTextField('descriptionStore')}
         margin="normal"
         className="TabContainer2-input"
       />
@@ -103,11 +136,11 @@ class NewStoreSetting extends Component {
           <InputLabel htmlFor="controlled-open-select">Направленость</InputLabel>
           <Select
             className="TabContainer-input"
-            open={this.state.open}
+            open={open}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
-            value={this.state.age}
-            onChange={this.handleChangeTextField('age')}
+            value={directionStore}
+            onChange={this.handleChangeTextField('directionStore')}
           >
             <MenuItem value="">
               <em>None</em>
@@ -127,12 +160,12 @@ class NewStoreSetting extends Component {
           </Select>
         </FormControl>
 
-
+////////////////////////////////////////////////////////////////////////////////
     return (
       <div className="ModalContentTabs">
         <AppBar position="static" color="default">
         <Tabs
-          value={this.state.value}
+          value={tabIndex}
           onChange={this.handleChange}
           indicatorColor="primary"
           textColor="primary"
@@ -144,21 +177,22 @@ class NewStoreSetting extends Component {
         </Tabs>
         </AppBar>
         <SwipeableViews
-          index={this.state.value}
+          index={tabIndex}
           onChangeIndex={this.handleChangeIndex}
         >
           <div className="TabContainer">
-            {nameStore}
+            {nameStoreTextField}
             {selectDirection}
           </div>
           <div className="TabContainer">
-            {descriptionStore}
+            {descriptionStoreTextField}
           </div>
           <div className="TabContainer">
             Обложка.img
           </div>
         </SwipeableViews>
-        {button}
+        {buttonBack}
+        {buttonNext}
       </div>
     );
   }
