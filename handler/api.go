@@ -8,31 +8,45 @@ import (
 )
 
 func API(w http.ResponseWriter, r *http.Request) {
+	class := r.URL.Query().Get("class")
 	method := r.URL.Query().Get("method")
-
-	fmt.Println("1",method)
+	fmt.Println("1",class)
 
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	switch method {
+	switch class {
 	case "account":
-		//date := r.URL.Query().Get("date")
-		json.NewEncoder(w).Encode("account")
-		w.WriteHeader(200)
+		switch method {
+		case "getinfo":
+			//user := r.URL.Query().Get("user")
+			json.NewEncoder(w).Encode("account")
+			w.WriteHeader(200)
+		}
 	case "store":
-		user := r.URL.Query().Get("getstoresuser")
-		fmt.Println("2",user)
-		res := dbwork.SelectStores(user)
-		json.NewEncoder(w).Encode(res)
-		w.WriteHeader(200)
+		switch method {
+		case "getstoresuser":
+			user := r.URL.Query().Get("user")
+			fmt.Println("2",user)
+			res := dbwork.SelectStores(user)
+			json.NewEncoder(w).Encode(res)
+			w.WriteHeader(200)
+		case "addstore":
+
+		}
+
+
 	case "step":
-		StoreId := r.URL.Query().Get("getsteps")
-		fmt.Println("3",StoreId)
-		res := dbwork.SelectSteps(StoreId)
-		json.NewEncoder(w).Encode(res)
-		w.WriteHeader(200)
+		switch method {
+		case "getsteps":
+			StoreId := r.URL.Query().Get("storeid")
+			fmt.Println("3",StoreId)
+			res := dbwork.SelectSteps(StoreId)
+			json.NewEncoder(w).Encode(res)
+			w.WriteHeader(200)
+		}
+
 
 	}
 }
