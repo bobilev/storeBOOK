@@ -51,6 +51,7 @@ class NewStoreSetting extends Component {
     }
     if (this.state.tabIndex == 2) {//Тут создаю новый Store в DB , закрываю окно настроек и запускаю редактор.
       console.log("done");
+      this.props.onclosemodal()
     }
 
   }
@@ -59,7 +60,7 @@ class NewStoreSetting extends Component {
       this.setState({tabIndex: 0});
     }
     if (this.state.tabIndex == 2) {
-      this.setState({tabIndex: 1});
+      this.setState({tabIndex: 1,textBtn: "Дальше"});
     }
   }
   handleChangeTextField = name => event => {
@@ -101,17 +102,18 @@ class NewStoreSetting extends Component {
         disabled={nextBool}>
         {textBtn}
       </Button>;
-    function buttonBack() {
-      if (tabIndex != 0) {
-        return (<Button
-          className="btnTabBack"
-          onClick={this.onClikBack}
-          variant="raised"
-          color="primary">
-          Назад
-        </Button>);
-      }
+    let buttonBack
+    if(tabIndex != 0) {
+      buttonBack =
+      <Button
+        className="btnTabBack"
+        onClick={this.onClikBack}
+        variant="outlined"
+        color="primary">
+        Назад
+      </Button>
     }
+
     const nameStoreTextField =
       <TextField
         id="name"
@@ -145,18 +147,36 @@ class NewStoreSetting extends Component {
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem id="elemSelectMenu" value={10}>
-              <Tooltip id="Tooltip" placement="right" enterDelay={200} title="1AddAd dA0\rsdf sdf" >
-                <span className="elemSelectMenuspan">Ten</span>
+            <MenuItem value={"jen"}>
+              <Tooltip id="Tooltip" placement="right" enterDelay={200}
+                title="Сюжет без романтических/сексуальных действий" >
+                <span className="elemSelectMenuspan">Джен</span>
               </Tooltip>
             </MenuItem>
-
-            <MenuItem value={20}>
-              <Tooltip id="Tooltip" placement="right" enterDelay={500} title="1AddAd dA0\rsdf sdf" >
-                <span>Twenty</span>
+            <MenuItem value={"geth"}>
+              <Tooltip id="Tooltip" placement="right" enterDelay={200}
+                title="Романтическое/сексуальное действие между мужчиной и женщиной" >
+                <span className="elemSelectMenuspan">Гет</span>
               </Tooltip>
             </MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={"femslash"}>
+              <Tooltip id="Tooltip" placement="right" enterDelay={200}
+                title="Романтическое/сексуальное действие между женщинами" >
+                <span className="elemSelectMenuspan">Фемслэш</span>
+              </Tooltip>
+            </MenuItem>
+            <MenuItem value={"slash"}>
+              <Tooltip id="Tooltip" placement="right" enterDelay={200}
+                title="Романтическое/сексуальное действие между мужчинами" >
+                <span className="elemSelectMenuspan">Слэш</span>
+              </Tooltip>
+            </MenuItem>
+            <MenuItem value={"triangle"}>
+              <Tooltip id="Tooltip" placement="right" enterDelay={200}
+                title="Романтическое/сексуальное действие между несколькими мужчинами и женщинами" >
+                <span className="elemSelectMenuspan">Треугольник (любовный треугольник)</span>
+              </Tooltip>
+            </MenuItem>
           </Select>
         </FormControl>
 

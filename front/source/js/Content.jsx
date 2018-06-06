@@ -8,7 +8,7 @@ class Content extends Component {
     stores: []
   };
   componentDidMount() {
-    fetch("http://localhost:3000/api?method=store&getstoresuser=chatbook")
+    fetch("http://localhost:3000/api?class=store&method=getstoresuser&user=chatbook")
       .then(response => response.json())
       .then(data => {
         //var arrayStores = Object.keys(data).map(key => data[key]);

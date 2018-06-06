@@ -27,7 +27,7 @@ class ModalSetting extends Component {
             isOpen={this.state.showModal} onRequestClose={this.handleCloseModal}
         >
 
-          <NewStoreSetting />
+          <NewStoreSetting onclosemodal={this.handleCloseModal}/>
 
         </ReactModal>
       </div>
