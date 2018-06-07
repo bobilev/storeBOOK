@@ -51,7 +51,19 @@ class NewStoreSetting extends Component {
       this.setState({tabIndex: 2,textBtn: "Готово"});
     }
     if (this.state.tabIndex == 2) {//Тут создаю новый Store в DB , закрываю окно настроек и запускаю редактор.
-      console.log("done");
+      console.log("done")
+      let mapParams = new Map()
+      mapParams.set('name', this.state.nameStore)
+      mapParams.set('media', '0')
+      mapParams.set('author', 'chatbook')
+      mapParams.set('direction', this.state.directionStore)
+      mapParams.set('description', this.state.descriptionStore)
+      mapParams.set('genre', '')
+      mapParams.set('restriction', '')
+      let res = fecthapi('store','addstore',mapParams)
+      res.then(res => {
+        console.log("newStoreId",res)
+      })
       this.props.onclosemodal()
     }
 
@@ -70,14 +82,14 @@ class NewStoreSetting extends Component {
 
   }
   componentWillMount() {
-    let mapParams = new Map()
-    mapParams.set('user', 'chatbook')
-    let res = fecthapi('store','getstoresuser',mapParams)
-
-    console.log("s")
-    res.then(res => {
-      console.log(res)
-    })
+    // let mapParams = new Map()
+    // mapParams.set('user', 'chatbook')
+    // let res = fecthapi('store','getstoresuser',mapParams)
+    //
+    // console.log("s")
+    // res.then(res => {
+    //   console.log(res)
+    // })
     // console.log(res)
   }
   render() {
