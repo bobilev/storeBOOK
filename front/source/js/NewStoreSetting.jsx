@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Tooltip from '@material-ui/core/Tooltip'
+import { fecthapi } from './fetchapi.js'
 
 class NewStoreSetting extends Component {
   state = {
@@ -68,7 +69,19 @@ class NewStoreSetting extends Component {
     this.setState({[name]: event.target.value});
 
   }
+  componentWillMount() {
+    let mapParams = new Map()
+    mapParams.set('user', 'chatbook')
+    let res = fecthapi('store','getstoresuser',mapParams)
+
+    console.log("s")
+    res.then(res => {
+      console.log(res)
+    })
+    // console.log(res)
+  }
   render() {
+
     const {
       nameStore,
       directionStore,
@@ -102,7 +115,7 @@ class NewStoreSetting extends Component {
         disabled={nextBool}>
         {textBtn}
       </Button>;
-    let buttonBack
+    let buttonBack//back
     if(tabIndex != 0) {
       buttonBack =
       <Button
