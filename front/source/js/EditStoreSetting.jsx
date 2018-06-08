@@ -18,9 +18,9 @@ class EditStoreSetting extends Component {
     nameStore: this.props.storedate.Name,
     directionStore: this.props.storedate.Direction,
     descriptionStore: this.props.storedate.Description,
-    open: false,
+    open: false,//select
     tabIndex: 0,
-    nextBool: true,
+    saveBool: true,
     tooltipopen: false
 
   };
@@ -36,9 +36,6 @@ class EditStoreSetting extends Component {
   // }
   handleChangeIndex = index => {//swiped tabs
     this.setState({tabIndex: index});
-  }
-  handleChangeSelect = event => {
-    this.setState({ [event.target.name]: event.target.value });
   }
 
   onClickNext = () => {
@@ -80,6 +77,8 @@ class EditStoreSetting extends Component {
   }
   handleChangeTextField = name => event => {
     this.setState({[name]: event.target.value});
+    console.log("handleChangeTextField",event.target.name," - ",name)
+    console.log("handleChangeTextField",event.target)
 
   }
   render() {
@@ -90,7 +89,7 @@ class EditStoreSetting extends Component {
       descriptionStore,
       open,
       tabIndex,
-      nextBool,
+      saveBool,
       tooltipopen
     } = this.state;
 
@@ -114,16 +113,17 @@ class EditStoreSetting extends Component {
         className="btnTabNext"
         onClick={this.onClickNext}
         variant="raised"
-        color="primary"
-        disabled={nextBool}>
+        color="primary">
         Дальше
       </Button>
     }
+    let classBtnBack = "btnTabBack"
+    if (tabIndex == 2) {classBtnBack = "btnTabNext"}
     let buttonBack//back
     if(tabIndex != 0) {
       buttonBack =
       <Button
-        className="btnTabBack"
+        className={classBtnBack}
         onClick={this.onClickBack}
         variant="outlined"
         color="primary">
@@ -137,8 +137,8 @@ class EditStoreSetting extends Component {
         className="btnTabSave"
         onClick={this.onClickSave}
         variant="outlined"
-        color="green"
-        disabled={nextBool}>
+        color="default"
+        disabled={saveBool}>
         Сохранить
       </Button>
     }

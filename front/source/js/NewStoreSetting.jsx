@@ -38,9 +38,6 @@ class NewStoreSetting extends Component {
   handleChangeIndex = index => {//swiped tabs
     this.setState({tabIndex: index});
   }
-  handleChangeSelect = event => {
-    this.setState({ [event.target.name]: event.target.value });
-  }
 
   onClickNext = () => {
     console.log("onclick");
