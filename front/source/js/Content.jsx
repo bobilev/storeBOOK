@@ -19,7 +19,7 @@ class Content extends Component {
     console.log(Array.isArray(this.state.stores))
     var Stores = this.state.stores.map(function(val) {
       return (
-         <Store key={Date.now()+val.Storeid} id={val.Storeid} name={val.Name} media={val.Media}/>
+         <Store key={Date.now()+val.Storeid} storedate={val}/>
        );
     })
     return(

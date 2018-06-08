@@ -25,24 +25,24 @@ class NewStoreSetting extends Component {
     tooltipopen: false
 
   };
-  handleClose = () => {
+  handleClose = () => {//select "Направленость"
     this.setState({open: false});
   };
 
-  handleOpen = () => {
+  handleOpen = () => {//select "Направленость"
     this.setState({open: true});
   };
   // handleChange = (event, value) => {
   //   this.setState({value});
   // }
-  handleChangeIndex = index => {
+  handleChangeIndex = index => {//swiped tabs
     this.setState({tabIndex: index});
   }
   handleChangeSelect = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  onClikNext = () => {
+  onClickNext = () => {
     console.log("onclick");
     if (this.state.tabIndex == 0) {
       this.setState({tabIndex: 1});
@@ -68,7 +68,7 @@ class NewStoreSetting extends Component {
     }
 
   }
-  onClikBack = () => {
+  onClickBack = () => {
     if (this.state.tabIndex == 1) {
       this.setState({tabIndex: 0});
     }
@@ -77,20 +77,8 @@ class NewStoreSetting extends Component {
     }
   }
   handleChangeTextField = name => event => {
-    const {nameStore,directionStore,descriptionStore} = this.state;
     this.setState({[name]: event.target.value});
 
-  }
-  componentWillMount() {
-    // let mapParams = new Map()
-    // mapParams.set('user', 'chatbook')
-    // let res = fecthapi('store','getstoresuser',mapParams)
-    //
-    // console.log("s")
-    // res.then(res => {
-    //   console.log(res)
-    // })
-    // console.log(res)
   }
   render() {
 
@@ -121,7 +109,7 @@ class NewStoreSetting extends Component {
     const buttonNext =//next
       <Button
         className="btnTabNext"
-        onClick={this.onClikNext}
+        onClick={this.onClickNext}
         variant="raised"
         color="primary"
         disabled={nextBool}>
@@ -132,7 +120,7 @@ class NewStoreSetting extends Component {
       buttonBack =
       <Button
         className="btnTabBack"
-        onClick={this.onClikBack}
+        onClick={this.onClickBack}
         variant="outlined"
         color="primary">
         Назад
