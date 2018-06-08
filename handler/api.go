@@ -40,6 +40,19 @@ func API(w http.ResponseWriter, r *http.Request) {
 			res := dbwork.CreateNewStore(name,media,author,direction,description)
 			json.NewEncoder(w).Encode(res)
 			w.WriteHeader(200)
+		case "editstore":
+			mapParams := make(map[string]string)
+			mapParams["storeid"] = r.URL.Query().Get("storeid")
+			mapParams["name"] = r.URL.Query().Get("name")
+			mapParams["media"] = r.URL.Query().Get("media")
+			mapParams["direction"] = r.URL.Query().Get("direction")
+			mapParams["description"] = r.URL.Query().Get("description")
+			//mapParams["genre"] = r.URL.Query().Get("genre")
+			mapParams["restriction"] = r.URL.Query().Get("restriction")
+
+			res := dbwork.EditStore(mapParams)
+			json.NewEncoder(w).Encode(res)
+			w.WriteHeader(200)
 		}
 
 

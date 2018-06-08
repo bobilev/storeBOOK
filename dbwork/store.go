@@ -4,6 +4,8 @@ import (
 	"github.com/bobilev/storeBOOK/dbtypes"
 	"log"
 	"github.com/lib/pq"
+	"fmt"
+	"strconv"
 )
 
 func SelectStores(author string) []dbtypes.Store{
@@ -34,4 +36,31 @@ func CreateNewStore(name,media,author,direction,description string) int{
 
 	log.Println("{INSERT | Add New Store}",LastInsertId)
 	return LastInsertId
+}
+func EditStore(mapParams map[string]string) map[string]string{
+	db := dbConnect()
+	defer db.Close()
+
+	responsMapUp := make(map[string]string)
+
+	storeid := mapParams["storeid"]
+	for key,param := range mapParams {
+		if param == "" || key == "storeid" {continue}
+		request := "UPDATE stores SET "+key+"=$2 WHERE id=$1"
+		stmt, err := db.Prepare(request)
+		checkErr(err)
+
+		res, err := stmt.Exec(storeid, param)
+		checkErr(err)
+
+		affect, err := res.RowsAffected()//Сколько записей удалось обновить
+		checkErr(err)
+		if affect == 0 {
+			fmt.Println("[ErrDB: UPDATE] Stores")
+		}
+		fmt.Println(affect)
+		responsMapUp[key] = strconv.Itoa(int(affect))
+	}
+	return responsMapUp
+
 }
