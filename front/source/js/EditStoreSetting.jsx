@@ -14,16 +14,22 @@ import Tooltip from '@material-ui/core/Tooltip'
 import { fecthapi } from './fetchapi.js'
 
 class EditStoreSetting extends Component {
-  state = {
-    nameStore: this.props.storedate.Name,
-    directionStore: this.props.storedate.Direction,
-    descriptionStore: this.props.storedate.Description,
-    open: false,//select
-    tabIndex: 0,
-    saveBool: true,
-    tooltipopen: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      nameStore: props.storedate.Name,
+      directionStore: props.storedate.Direction,
+      descriptionStore: props.storedate.Description,
+      open: false,//select
+      tabIndex: 0,
+      saveBool: true,
+      tooltipopen: false
 
-  };
+    }
+    this.changeStateSave = this.changeStateSave.bind(this);
+    this.handleChangeTextField = this.handleChangeTextField.bind(this);
+  }
+
   handleClose = () => {//select "Направленость"
     this.setState({open: false});
   }
@@ -71,34 +77,84 @@ class EditStoreSetting extends Component {
     if (this.state.tabIndex == 2) {
       this.setState({tabIndex: 1});
     }
-    this.props.onfetcreload('chatbook')
   }
   onClickSave = () => {
+    const {
+      nameStore,
+      directionStore,
+      descriptionStore,
+    } = this.state;
+    const {
+      Storeid,
+      Name,
+      Direction,
+      Description,
+      // Genre,
+      // Media,
+      // Restriction,
+      // Author,
+    } = this.props.storedate;
 
+    let mapParams = new Map()
+    mapParams.set('storeid', Storeid)
+    if (Name != nameStore) {mapParams.set('name', nameStore)}
+    if (Direction != directionStore) {mapParams.set('direction', directionStore)}
+    if (Description != descriptionStore) {mapParams.set('description', descriptionStore)}
+    // mapParams.set('media', '0')
+    // mapParams.set('author', 'chatbook')
+    // mapParams.set('genre', '')
+    // mapParams.set('restriction', '')
+    let res = fecthapi('store','editstore',mapParams)
+    res.then(res => {
+      console.log("newStoreId",res)
+    })
+
+    this.setState({saveBool: true})
+    this.props.onclosemodal()
+    this.props.onfetcreload('chatbook')
+    console.log("save")
   }
   handleChangeTextField = name => event => {
-    this.setState({[name]: event.target.value});
+    this.setState({[name]: event.target.value})
+    // this.changeStateSave()
+  }
+  changeStateSave() {// state -> btnSave: true || false
+    const {
+      nameStore,
+      directionStore,
+      descriptionStore,
+    } = this.state;
+    const {
+      Name,
+      Direction,
+      Description,
+    } = this.props.storedate;
+    if (Name != nameStore || Direction != directionStore || Description != descriptionStore) {
+      if (this.state.saveBool) {
+        this.setState({saveBool: false})
+      }
+      console.log("saveBool: on")
+      console.log(Name,":",nameStore)
+      return false
+    }
+    if (Name == nameStore && Direction == directionStore && Description == descriptionStore) {
+      if (!this.state.saveBool) {
+        this.setState({saveBool: true})
+      }
+      // this.setState({saveBool: true})
+      console.log("saveBool: off")
+      console.log(Name,":",nameStore)
+      return true
+    }
+  }
+  // componentDidUpdate() {
+  //   //this.changeStateSave()
+  //   console.log("componentDidUpdate")
+  // }
+  // componentDidMount() {
+  //   console.log("componentDidMount")
+  // }
 
-  }
-  componentDidUpdate() {
-    // const {
-    //   nameStore,
-    //   directionStore,
-    //   descriptionStore,
-    // } = this.state;
-    // const {
-    //   Name,
-    //   Direction,
-    //   Description
-    // } = this.props.storedate;
-    // if (Name != nameStore || Direction != directionStore || Description != descriptionStore) {
-    //   this.setState({saveBool: false})
-    // }
-    // if (Name == nameStore && Direction == directionStore && Description == descriptionStore) {
-    //   this.setState({saveBool: true})
-    // }
-    console.log("componentDidUpdate")
-  }
   render() {
 
     const {
@@ -107,10 +163,10 @@ class EditStoreSetting extends Component {
       descriptionStore,
       open,
       tabIndex,
-      saveBool,
+      // saveBool,
       tooltipopen
     } = this.state;
-
+    let saveBool = this.changeStateSave()
     // if (nameStore == "" || directionStore == "") {
     //   console.log("nextBool: true")
     //   if(!nextBool) {
