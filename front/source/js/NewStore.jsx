@@ -17,6 +17,7 @@ class NewStore extends Component {
   }
   handleCloseModal() {
     this.setState({ showModal: false });
+    this.props.onfetchapicontent('chatbook');
   }
   render() {
     return(

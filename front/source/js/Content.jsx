@@ -4,16 +4,24 @@ import NewStore from './NewStore.jsx'
 import { hot } from 'react-hot-loader'
 
 class Content extends Component {
-  state = {
-    stores: []
-  };
-  componentDidMount() {
-    fetch("http://localhost:3000/api?class=store&method=getstoresuser&user=chatbook")
+  constructor() {
+    super();
+    this.state = {
+      stores: []
+    };
+    this.fetchapiContent = this.fetchapiContent.bind(this);
+  }
+  fetchapiContent(name) {
+    console.log("fetch start",name)
+    fetch("http://localhost:3000/api?class=store&method=getstoresuser&user="+name)
       .then(response => response.json())
       .then(data => {
         //var arrayStores = Object.keys(data).map(key => data[key]);
         this.setState({ stores: data });
       });
+  }
+  componentDidMount() {
+    this.fetchapiContent('chatbook')
   }
   render() {
     console.log(Array.isArray(this.state.stores))
@@ -29,7 +37,7 @@ class Content extends Component {
           <img src='/dist/icon/filtrlistmenu.png' />
         </div>
         <div id='content'>
-          <NewStore />
+          <NewStore onfetchapicontent={this.fetchapiContent}/>
           {Stores}
         </div>
       </div>

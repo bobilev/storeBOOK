@@ -77,9 +77,26 @@ class EditStoreSetting extends Component {
   }
   handleChangeTextField = name => event => {
     this.setState({[name]: event.target.value});
-    console.log("handleChangeTextField",event.target.name," - ",name)
-    console.log("handleChangeTextField",event.target)
 
+  }
+  componentDidUpdate() {
+    // const {
+    //   nameStore,
+    //   directionStore,
+    //   descriptionStore,
+    // } = this.state;
+    // const {
+    //   Name,
+    //   Direction,
+    //   Description
+    // } = this.props.storedate;
+    // if (Name != nameStore || Direction != directionStore || Description != descriptionStore) {
+    //   this.setState({saveBool: false})
+    // }
+    // if (Name == nameStore && Direction == directionStore && Description == descriptionStore) {
+    //   this.setState({saveBool: true})
+    // }
+    console.log("shouldComponentUpdate")
   }
   render() {
 
