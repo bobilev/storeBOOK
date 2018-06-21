@@ -17,7 +17,7 @@ class NewStore extends Component {
   }
   handleCloseModal() {
     this.setState({ showModal: false });
-    this.props.onfetchapicontent('chatbook');
+    // this.props.onfetchapicontent('chatbook');
   }
   render() {
     return(
@@ -28,9 +28,7 @@ class NewStore extends Component {
               className="Modal" overlayClassName="Overlay" contentLabel="Minimal Modal Example"
               isOpen={this.state.showModal} onRequestClose={this.handleCloseModal}
           >
-
-            <NewStoreSetting onclosemodal={this.handleCloseModal}/>
-
+            <NewStoreSetting onclosemodal={this.handleCloseModal} onfetcreload={this.props.onfetcreload}/>
           </ReactModal>
         </div>
       </div>

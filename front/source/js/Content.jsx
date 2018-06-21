@@ -9,9 +9,9 @@ class Content extends Component {
     this.state = {
       stores: []
     };
-    this.fetchapiContent = this.fetchapiContent.bind(this);
+    this.fetcreload = this.fetcreload.bind(this);
   }
-  fetchapiContent(name) {
+  fetcreload(name) {
     console.log("fetch start",name)
     fetch("http://localhost:3000/api?class=store&method=getstoresuser&user="+name)
       .then(response => response.json())
@@ -21,15 +21,15 @@ class Content extends Component {
       });
   }
   componentDidMount() {
-    this.fetchapiContent('chatbook')
+    this.fetcreload('chatbook')
   }
   render() {
     console.log(Array.isArray(this.state.stores))
     var Stores = this.state.stores.map(function(val) {
       return (
-         <Store key={Date.now()+val.Storeid} storedate={val}/>
+         <Store key={Date.now()+val.Storeid} storedate={val} onfetcreload={this.fetcreload}/>
        );
-    })
+    }.bind(this))
     return(
       <div id='main_center'>
         <div id='filtr'>
@@ -37,7 +37,7 @@ class Content extends Component {
           <img src='/dist/icon/filtrlistmenu.png' />
         </div>
         <div id='content'>
-          <NewStore onfetchapicontent={this.fetchapiContent}/>
+          <NewStore onfetcreload={this.fetcreload}/>
           {Stores}
         </div>
       </div>

@@ -71,6 +71,7 @@ class EditStoreSetting extends Component {
     if (this.state.tabIndex == 2) {
       this.setState({tabIndex: 1});
     }
+    this.props.onfetcreload('chatbook')
   }
   onClickSave = () => {
 
@@ -96,7 +97,7 @@ class EditStoreSetting extends Component {
     // if (Name == nameStore && Direction == directionStore && Description == descriptionStore) {
     //   this.setState({saveBool: true})
     // }
-    console.log("shouldComponentUpdate")
+    console.log("componentDidUpdate")
   }
   render() {
 

@@ -62,6 +62,7 @@ class NewStoreSetting extends Component {
         console.log("newStoreId",res)
       })
       this.props.onclosemodal()
+      this.props.onfetcreload('chatbook')
     }
 
   }

@@ -29,7 +29,7 @@ class Store extends Component {
               className="Modal" overlayClassName="Overlay" contentLabel="Minimal Modal Example"
               isOpen={showModal} onRequestClose={this.handleCloseModal}
           >
-            <EditStoreSetting onclosemodal={this.handleCloseModal} storedate={storedate}/>
+            <EditStoreSetting onclosemodal={this.handleCloseModal} storedate={storedate} onfetcreload={this.props.onfetcreload}/>
           </ReactModal>
         </div>
 
