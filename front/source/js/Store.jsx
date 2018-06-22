@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import EditStoreSetting from './EditStoreSetting.jsx'
+import StoreTextEditor from './StoreTextEditor/StoreTextEditor.jsx'
 
 class Store extends Component {
   constructor(props) {
     super();
     this.state = {
       storedate: props.storedate,
-      showModal: false
+      showModal: false,
+      bottom: false
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -19,10 +22,18 @@ class Store extends Component {
   handleCloseModal() {
     this.setState({ showModal: false });
   }
+  openStoreEdit() {
+
+  }
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
+  };
   render() {
     const { storedate, showModal} = this.state
     return(
-      <div id='store'>
+      <div id='store' onClick={this.toggleDrawer('bottom', true)}>
         <div className='storeIconSetting'>
           <img src='/dist/icon/settings.png' onClick={this.handleOpenModal} />
           <ReactModal
@@ -34,6 +45,18 @@ class Store extends Component {
         </div>
 
         <div className="storeName"><span>{storedate.Name}</span></div>
+
+        <SwipeableDrawer
+          anchor="bottom"
+          open={this.state.bottom}
+          onClose={this.toggleDrawer('bottom', false)}
+          onOpen={this.toggleDrawer('bottom', true)}
+          onKeyDown={this.toggleDrawer('bottom', false)}
+        >
+
+          <StoreTextEditor />
+
+        </SwipeableDrawer>
       </div>
     );
   }
