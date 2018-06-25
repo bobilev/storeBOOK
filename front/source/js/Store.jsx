@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Drawer from '@material-ui/core/Drawer';
 import EditStoreSetting from './EditStoreSetting.jsx'
 import StoreTextEditor from './StoreTextEditor/StoreTextEditor.jsx'
 
@@ -10,30 +10,30 @@ class Store extends Component {
     this.state = {
       storedate: props.storedate,
       showModal: false,
-      bottom: false
+      storeEdit: false
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
   handleOpenModal() {
-    this.setState({ showModal: true });
+    this.setState({ showModal: true })
   }
   handleCloseModal() {
     this.setState({ showModal: false });
   }
-  openStoreEdit() {
-
+  openStoreEdit = () => {
+      this.setState({ storeEdit: true });
+      console.log("storeEdit: true");
   }
-  toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open,
-    });
-  };
+  closeStoreEdit = () => {
+      this.setState({ storeEdit: false });
+      console.log("storeEdit: false");
+  }
   render() {
-    const { storedate, showModal} = this.state
+    const { storedate, showModal, storeEdit} = this.state
     return(
-      <div id='store' onClick={this.toggleDrawer('bottom', true)}>
+      <div id='store' >
         <div className='storeIconSetting'>
           <img src='/dist/icon/settings.png' onClick={this.handleOpenModal} />
           <ReactModal
@@ -43,20 +43,19 @@ class Store extends Component {
             <EditStoreSetting onclosemodal={this.handleCloseModal} storedate={storedate} onfetcreload={this.props.onfetcreload}/>
           </ReactModal>
         </div>
+        <div>
+          <img src='/dist/icon/noalbom.png' onClick={this.openStoreEdit}/>
+        </div>
+        <div className="storeName" onClick={this.openStoreEdit}>
+          <span>{storedate.Name}</span>
+        </div>
 
-        <div className="storeName"><span>{storedate.Name}</span></div>
-
-        <SwipeableDrawer
+        <Drawer
           anchor="bottom"
-          open={this.state.bottom}
-          onClose={this.toggleDrawer('bottom', false)}
-          onOpen={this.toggleDrawer('bottom', true)}
-          onKeyDown={this.toggleDrawer('bottom', false)}
+          open={storeEdit}
         >
-
-          <StoreTextEditor />
-
-        </SwipeableDrawer>
+          <StoreTextEditor storedate={storedate} closeStoreEdit={this.closeStoreEdit}/>
+        </Drawer>
       </div>
     );
   }
