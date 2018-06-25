@@ -8,7 +8,6 @@ class NewStore extends Component {
     this.state = {
       showModal: false
     };
-
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
@@ -17,7 +16,6 @@ class NewStore extends Component {
   }
   handleCloseModal() {
     this.setState({ showModal: false });
-    // this.props.onfetchapicontent('chatbook');
   }
   render() {
     return(

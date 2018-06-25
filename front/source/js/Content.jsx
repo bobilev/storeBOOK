@@ -16,7 +16,6 @@ class Content extends Component {
     fetch("http://localhost:3000/api?class=store&method=getstoresuser&user="+name)
       .then(response => response.json())
       .then(data => {
-        //var arrayStores = Object.keys(data).map(key => data[key]);
         this.setState({ stores: data });
       });
   }

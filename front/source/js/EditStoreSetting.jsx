@@ -5,7 +5,6 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
@@ -29,17 +28,12 @@ class EditStoreSetting extends Component {
     this.changeStateSave = this.changeStateSave.bind(this);
     this.handleChangeTextField = this.handleChangeTextField.bind(this);
   }
-
   handleClose = () => {//select "Направленость"
     this.setState({open: false});
   }
-
   handleOpen = () => {//select "Направленость"
     this.setState({open: true});
   }
-  // handleChange = (event, value) => {
-  //   this.setState({value});
-  // }
   handleChangeIndex = index => {//swiped tabs
     this.setState({tabIndex: index});
   }
@@ -52,23 +46,6 @@ class EditStoreSetting extends Component {
     if (this.state.tabIndex == 1) {
       this.setState({tabIndex: 2});
     }
-    // if (this.state.tabIndex == 2) {//Тут создаю новый Store в DB , закрываю окно настроек и запускаю редактор.
-    //   console.log("done")
-    //   let mapParams = new Map()
-    //   mapParams.set('name', this.state.nameStore)
-    //   mapParams.set('media', '0')
-    //   mapParams.set('author', 'chatbook')
-    //   mapParams.set('direction', this.state.directionStore)
-    //   mapParams.set('description', this.state.descriptionStore)
-    //   mapParams.set('genre', '')
-    //   mapParams.set('restriction', '')
-    //   let res = fecthapi('store','addstore',mapParams)
-    //   res.then(res => {
-    //     console.log("newStoreId",res)
-    //   })
-    //   this.props.onclosemodal()
-    // }
-
   }
   onClickBack = () => {
     if (this.state.tabIndex == 1) {
@@ -116,7 +93,6 @@ class EditStoreSetting extends Component {
   }
   handleChangeTextField = name => event => {
     this.setState({[name]: event.target.value})
-    // this.changeStateSave()
   }
   changeStateSave() {// state -> btnSave: true || false
     const {
@@ -133,27 +109,15 @@ class EditStoreSetting extends Component {
       if (this.state.saveBool) {
         this.setState({saveBool: false})
       }
-      console.log("saveBool: on")
-      console.log(Name,":",nameStore)
       return false
     }
     if (Name == nameStore && Direction == directionStore && Description == descriptionStore) {
       if (!this.state.saveBool) {
         this.setState({saveBool: true})
       }
-      // this.setState({saveBool: true})
-      console.log("saveBool: off")
-      console.log(Name,":",nameStore)
       return true
     }
   }
-  // componentDidUpdate() {
-  //   //this.changeStateSave()
-  //   console.log("componentDidUpdate")
-  // }
-  // componentDidMount() {
-  //   console.log("componentDidMount")
-  // }
 
   render() {
 
@@ -163,23 +127,9 @@ class EditStoreSetting extends Component {
       descriptionStore,
       open,
       tabIndex,
-      // saveBool,
       tooltipopen
     } = this.state;
     let saveBool = this.changeStateSave()
-    // if (nameStore == "" || directionStore == "") {
-    //   console.log("nextBool: true")
-    //   if(!nextBool) {
-    //     this.setState({nextBool: true})
-    //   }
-    // } else {
-    //   console.log("nextBool: false")
-    //   if(nextBool) {
-    //     this.setState({nextBool: false})
-    //   }
-    // }
-
-
     let buttonNext//next
     if(tabIndex != 2) {
       buttonNext =
@@ -204,7 +154,7 @@ class EditStoreSetting extends Component {
         Назад
       </Button>
     }
-    let buttonSave//back
+    let buttonSave//save
     if(tabIndex != 3) {
       buttonSave =
       <Button
@@ -282,7 +232,6 @@ class EditStoreSetting extends Component {
             </MenuItem>
           </Select>
         </FormControl>
-
 ////////////////////////////////////////////////////////////////////////////////
     return (
       <div className="ModalContentTabs">

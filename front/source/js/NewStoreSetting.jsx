@@ -18,7 +18,7 @@ class NewStoreSetting extends Component {
     nameStore: "",
     directionStore: '',
     descriptionStore: "",
-    open: false,
+    open: false,//select
     tabIndex: 0,
     textBtn: "Дальше",
     nextBool: true,
@@ -28,17 +28,12 @@ class NewStoreSetting extends Component {
   handleClose = () => {//select "Направленость"
     this.setState({open: false});
   };
-
   handleOpen = () => {//select "Направленость"
     this.setState({open: true});
   };
-  // handleChange = (event, value) => {
-  //   this.setState({value});
-  // }
   handleChangeIndex = index => {//swiped tabs
     this.setState({tabIndex: index});
   }
-
   onClickNext = () => {
     console.log("onclick");
     if (this.state.tabIndex == 0) {
@@ -64,7 +59,6 @@ class NewStoreSetting extends Component {
       this.props.onclosemodal()
       this.props.onfetcreload('chatbook')
     }
-
   }
   onClickBack = () => {
     if (this.state.tabIndex == 1) {
@@ -76,7 +70,6 @@ class NewStoreSetting extends Component {
   }
   handleChangeTextField = name => event => {
     this.setState({[name]: event.target.value});
-
   }
   render() {
 
@@ -102,7 +95,6 @@ class NewStoreSetting extends Component {
         this.setState({nextBool: false})
       }
     }
-
 
     const buttonNext =//next
       <Button
@@ -190,7 +182,6 @@ class NewStoreSetting extends Component {
             </MenuItem>
           </Select>
         </FormControl>
-
 ////////////////////////////////////////////////////////////////////////////////
     return (
       <div className="ModalContentTabs">
