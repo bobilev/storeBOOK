@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+import StepEdit from './StepEdit.jsx'
 
 class StoreTextEditor extends React.Component {
 
@@ -8,27 +8,19 @@ class StoreTextEditor extends React.Component {
     return (
       <div id='StoreTextEditor'>
         <div className='StoreTextEditorContent'>
-          <div className="upBarStoreEditClose">
-            <img src='/dist/icon/close.png' onClick={this.props.closeStoreEdit} />
-          </div>
+
           <div className="upBarStoreEdit">
 
+
+            <div>ICON <br/> (направление)</div>
+            <div>название</div>
+            <div>сохранить</div>
+            <div className="upBarStoreEditClose">
+              <img src='/dist/icon/close.png' onClick={this.props.closeStoreEdit} />
+            </div>
           </div>
           <div>
-            <Paper className="paperStoreEdit">
-              Ни что не нарушала твое мирное скитание по веб-сайтам, как вдруг в 02:00 часа ночи твою темную обитель потревожил телефонный звонок. Кто бы это мог быть, подумала ты.
-            </Paper>
-            <Paper className="paperStoreEdit">
-              Кейси сняла с себя остаток порванного стелс костюма. Ривс повела её в ванную для дезактивации нано-роботов на ее теле. Пока что ее сигнал перебивал другой, тот который был тебе нужен и важен.
-              - Ты же накажешь меня за неудачу? - с наигранной вино вопросила Кейси. Она всегда просила себя наказать, по поводу и без повода. Может это связано с её прошлым ветерана спец отряда призраков, до тебя доходили слухи что в корпусе стелс-разведчиков жестко наказывали подчиненных. Но она предпочитала наказания более деликатного характера.
-              - Ты же знала что у меня был другой план, сама вызвалась, так что никто не провинился - пробурчала ты. Ее навыки позволяли ей выполнить задачу любой сложности, но она как будто специально выдумывала для себя невыполнимые условия, и каждый раз выполнив миссию она утверждала что проиграла и выпрашивала наказания.
-              - Ну ладно, если не вымоюсь за 1 секунду то ...?
-              - Иди уже! - с усмешкой приказала ты ей. Иногда тебе кажется что твоя команда полный дурдом, но на эффективность это ни как не влияло.
-              Усевшись в кресло и открыв второй ноутбук мысли начали обдумывать следующий ход плана.
-            </Paper>
-            <Paper className="paperStoreEdit">
-              test 3
-            </Paper>
+            <StepEdit />
           </div>
         </div>
       </div>

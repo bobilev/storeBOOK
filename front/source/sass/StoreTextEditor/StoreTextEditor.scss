@@ -1,19 +1,37 @@
 #StoreTextEditor {
+  padding: 0;
   width: 100%;
   height: 100vh;
 }
+.stepEdit {
+  margin: 20px;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &:hover #btnAddStep{
+        display: block;
+    }
+}
 .StoreTextEditorContent {
   width: 720px;
-  height: 100%;
+  height: 100vh;
   margin: 0 auto;
   // border: 1px solid red;
+}
+.upBarStoreEdit {
+  height: 50px;
+  margin: 20px;
+  background: rgb(131, 137, 179);
+  display: flex;
+  justify-content:space-between;
 }
 .upBarStoreEditClose {
   cursor: pointer;
   position: fixed;
-  right: 0px;
+  right: 10px;
   img {
-    margin: 20px;
+    // margin: 20px;
     width: 50px;
     // filter: brightness(20%);
     filter: invert(70%);
@@ -22,12 +40,12 @@
     }
   }
 }
-.upBarStoreEdit {
-  height: 50px;
-  margin: 20px;
-  background: rgb(131, 137, 179);
-}
+
 .paperStoreEdit {
   padding: 20px;
-  margin: 20px;
+
+}
+#btnAddStep {
+  margin: 15px;
+  display: none;
 }
