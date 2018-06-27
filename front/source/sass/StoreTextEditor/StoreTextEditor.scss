@@ -4,9 +4,9 @@
   height: 100vh;
 }
 .stepEdit {
-  margin: 20px;
+  // width: 680px;
+  // margin: 20px;
   display: flex;
-  // justify-content: center;
   align-items: center;
   flex-direction: column;
   &:hover #btnAddStep{
@@ -42,7 +42,14 @@
 }
 
 .paperStoreEdit {
+  width: 640px;
   padding: 20px;
+  outline: 1px solid #fff;
+  line-height: 1.3;
+  font-size: 19px;
+  color: rgba(0, 0, 0, 0.75);
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: subpixel-antialiased
 
 }
 #btnAddStep {
