@@ -18,7 +18,7 @@ func SelectStores(author string) []dbtypes.Store{
 	for res.Next() {
 
 		var Store dbtypes.Store
-		err = res.Scan(&Store.Storeid,&Store.Name,&Store.Media,&Store.Author,&Store.Direction,&Store.Description,pq.Array(&Store.Genre),&Store.Restriction)
+		err = res.Scan(&Store.StoreId,&Store.Name,&Store.Media,&Store.Author,&Store.Direction,&Store.Description,pq.Array(&Store.Genre),&Store.Restriction)
 		checkErr(err)
 
 		Lists = append(Lists,Store)

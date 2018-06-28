@@ -1,7 +1,7 @@
 package dbtypes
 
 type Store struct {
-	Storeid int
+	StoreId int
 	Name string
 	Media int
 	Author string

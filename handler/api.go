@@ -54,13 +54,11 @@ func API(w http.ResponseWriter, r *http.Request) {
 			json.NewEncoder(w).Encode(res)
 			w.WriteHeader(200)
 		}
-
-
 	case "step":
 		switch method {
 		case "getsteps":
 			StoreId := r.URL.Query().Get("storeid")
-			fmt.Println("3",StoreId)
+			fmt.Println("StoreId",StoreId)
 			res := dbwork.SelectSteps(StoreId)
 			json.NewEncoder(w).Encode(res)
 			w.WriteHeader(200)

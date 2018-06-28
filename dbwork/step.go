@@ -16,28 +16,11 @@ func SelectSteps(storeid string) []dbtypes.Step{
 	checkErr(err)
 	var Lists []dbtypes.Step
 	for res.Next() {
-		var id int
-		var storeid int
-		var stepid string
-		var text string
-		var media int
 		var answer []string
-		var typedoc string
-		var accesskey string
-		//var Answer dbtypes.Answer
 
 		var Step dbtypes.Step
-		err = res.Scan(&id,&storeid,&stepid,&text,&media,pq.Array(&answer),&typedoc,&accesskey)
+		err = res.Scan(&Step.Id,&Step.StoreId,&Step.StepId,&Step.Text,&Step.Media,pq.Array(&answer),&Step.TypeDoc,&Step.AccessKey)
 		checkErr(err)
-
-		Step.Id = id
-		Step.StoreId = storeid
-		Step.StepID = stepid
-		Step.Text = text
-		Step.Media = media
-
-		Step.TypeDoc = typedoc
-		Step.AccessKey = accesskey
 
 		for _,val := range answer {
 			array := strings.Split(val,"|")
