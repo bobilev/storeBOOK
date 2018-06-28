@@ -6,7 +6,7 @@ import StoreEditor from './StoreEditor/StoreEditor.jsx'
 
 class Store extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       storedate: props.storedate,
       showModal: false,

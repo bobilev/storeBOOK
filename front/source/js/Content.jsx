@@ -4,14 +4,13 @@ import NewStore from './NewStore.jsx'
 import { hot } from 'react-hot-loader'
 
 class Content extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       stores: []
     };
-    this.fetcreload = this.fetcreload.bind(this);
   }
-  fetcreload(name) {
+  fetcreload = (name) => {
     console.log("fetch start",name)
     fetch("http://localhost:3000/api?class=store&method=getstoresuser&user="+name)
       .then(response => response.json())
@@ -26,7 +25,7 @@ class Content extends Component {
     console.log(Array.isArray(this.state.stores))
     var Stores = this.state.stores.map(function(val) {
       return (
-         <Store key={Date.now()+val.Storeid} storedate={val} onfetcreload={this.fetcreload}/>
+         <Store key={Date.now()+val.StoreId} storedate={val} onfetcreload={this.fetcreload}/>
        );
     }.bind(this))
     return(

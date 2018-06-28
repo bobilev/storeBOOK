@@ -105,13 +105,13 @@ class EditStoreSetting extends Component {
       Direction,
       Description,
     } = this.props.storedate;
-    if (Name != nameStore || Direction != directionStore || Description != descriptionStore) {
+    if (Name !== nameStore || Direction !== directionStore || Description !== descriptionStore) {
       if (this.state.saveBool) {
         this.setState({saveBool: false})
       }
       return false
     }
-    if (Name == nameStore && Direction == directionStore && Description == descriptionStore) {
+    if (Name === nameStore && Direction === directionStore && Description === descriptionStore) {
       if (!this.state.saveBool) {
         this.setState({saveBool: true})
       }

@@ -84,7 +84,7 @@ class NewStoreSetting extends Component {
       tooltipopen
     } = this.state;
 
-    if (nameStore == "" || directionStore == "") {
+    if (nameStore === "" || directionStore === "") {
       console.log("nextBool: true")
       if(!nextBool) {
         this.setState({nextBool: true})
