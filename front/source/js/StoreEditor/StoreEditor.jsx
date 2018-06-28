@@ -1,13 +1,13 @@
 import React from 'react';
 import StepEdit from './StepEdit.jsx'
 
-class StoreTextEditor extends React.Component {
+class StoreEditor extends React.Component {
 
   render() {
 
     return (
-      <div id='StoreTextEditor'>
-        <div className='StoreTextEditorContent'>
+      <div id='StoreEditor'>
+        <div className='StoreEditorContent'>
 
           <div className="upBarStoreEdit">
 
@@ -28,4 +28,4 @@ class StoreTextEditor extends React.Component {
   }
 }
 
-export default StoreTextEditor;
+export default StoreEditor;

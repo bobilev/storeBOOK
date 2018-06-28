@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ReactModal from 'react-modal'
 import Drawer from '@material-ui/core/Drawer';
 import EditStoreSetting from './EditStoreSetting.jsx'
-import StoreTextEditor from './StoreTextEditor/StoreTextEditor.jsx'
+import StoreEditor from './StoreEditor/StoreEditor.jsx'
 
 class Store extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class Store extends Component {
           anchor="bottom"
           open={storeEdit}
         >
-          <StoreTextEditor storedate={storedate} closeStoreEdit={this.closeStoreEdit}/>
+          <StoreEditor storedate={storedate} closeStoreEdit={this.closeStoreEdit}/>
         </Drawer>
       </div>
     );
