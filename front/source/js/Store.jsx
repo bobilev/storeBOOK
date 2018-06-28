@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactModal from 'react-modal'
-import Drawer from '@material-ui/core/Drawer';
+import Drawer from '@material-ui/core/Drawer'
 import EditStoreSetting from './EditStoreSetting.jsx'
 import StoreEditor from './StoreEditor/StoreEditor.jsx'
 
@@ -8,7 +8,7 @@ class Store extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      storedate: props.storedate,
+      storeDate: props.storeDate,
       showModal: false,
       storeEdit: false
     };
@@ -31,7 +31,7 @@ class Store extends Component {
       console.log("storeEdit: false");
   }
   render() {
-    const { storedate, showModal, storeEdit} = this.state
+    const { storeDate, showModal, storeEdit} = this.state
     return(
       <div id='store' >
         <div className='storeIconSetting'>
@@ -40,27 +40,27 @@ class Store extends Component {
               className="Modal" overlayClassName="Overlay" contentLabel="Minimal Modal Example"
               isOpen={showModal} onRequestClose={this.handleCloseModal}
           >
-            <EditStoreSetting onclosemodal={this.handleCloseModal} storedate={storedate} onfetcreload={this.props.onfetcreload}/>
+            <EditStoreSetting onCloseModal={this.handleCloseModal} storeDate={storeDate} onFetchReload={this.props.onFetchReload}/>
           </ReactModal>
         </div>
         <div>
           <img src='/dist/icon/noalbom.png' onClick={this.openStoreEdit}/>
         </div>
         <div className="storeName" onClick={this.openStoreEdit}>
-          <span>{storedate.Name}</span>
+          <span>{storeDate.Name}</span>
         </div>
 
         <Drawer
           anchor="bottom"
           open={storeEdit}
         >
-          <StoreEditor storedate={storedate} closeStoreEdit={this.closeStoreEdit}/>
+          <StoreEditor storeDate={storeDate} closeStoreEdit={this.closeStoreEdit}/>
         </Drawer>
       </div>
     );
   }
   componentDidMount() {
-    ReactModal.setAppElement('#newstore');
+    ReactModal.setAppElement('#store');
   }
 }
 

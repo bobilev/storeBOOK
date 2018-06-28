@@ -16,13 +16,13 @@ class EditStoreSetting extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameStore: props.storedate.Name,
-      directionStore: props.storedate.Direction,
-      descriptionStore: props.storedate.Description,
+      nameStore: props.storeDate.Name,
+      directionStore: props.storeDate.Direction,
+      descriptionStore: props.storeDate.Description,
       open: false,//select
       tabIndex: 0,
       saveBool: true,
-      tooltipopen: false
+      // tooltipOpen: false
 
     }
     this.changeStateSave = this.changeStateSave.bind(this);
@@ -70,7 +70,7 @@ class EditStoreSetting extends Component {
       // Media,
       // Restriction,
       // Author,
-    } = this.props.storedate;
+    } = this.props.storeDate;
 
     let mapParams = new Map()
     mapParams.set('storeid', Storeid)
@@ -87,8 +87,8 @@ class EditStoreSetting extends Component {
     })
 
     this.setState({saveBool: true})
-    this.props.onclosemodal()
-    this.props.onfetcreload('chatbook')
+    this.props.onCloseModal()
+    this.props.onFetchReload('chatbook')
     console.log("save")
   }
   handleChangeTextField = name => event => {
@@ -104,7 +104,7 @@ class EditStoreSetting extends Component {
       Name,
       Direction,
       Description,
-    } = this.props.storedate;
+    } = this.props.storeDate;
     if (Name !== nameStore || Direction !== directionStore || Description !== descriptionStore) {
       if (this.state.saveBool) {
         this.setState({saveBool: false})
@@ -127,7 +127,7 @@ class EditStoreSetting extends Component {
       descriptionStore,
       open,
       tabIndex,
-      tooltipopen
+      // tooltipopen
     } = this.state;
     let saveBool = this.changeStateSave()
     let buttonNext//next

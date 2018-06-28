@@ -22,7 +22,7 @@ class NewStoreSetting extends Component {
     tabIndex: 0,
     textBtn: "Дальше",
     nextBool: true,
-    tooltipopen: false
+    // tooltipOpen: false
 
   };
   handleClose = () => {//select "Направленость"
@@ -56,8 +56,8 @@ class NewStoreSetting extends Component {
       res.then(res => {
         console.log("newStoreId",res)
       })
-      this.props.onclosemodal()
-      this.props.onfetcreload('chatbook')
+      this.props.onCloseModal()
+      this.props.onFetchReload('chatbook')
     }
   }
   onClickBack = () => {
@@ -81,7 +81,7 @@ class NewStoreSetting extends Component {
       tabIndex,
       textBtn,
       nextBool,
-      tooltipopen
+      // tooltipopen
     } = this.state;
 
     if (nameStore === "" || directionStore === "") {

@@ -6,7 +6,7 @@ class StoreEditor extends React.Component {//SavePull
   constructor(props) {
     super(props);
     this.state = {
-      StoreId: props.storedate.StoreId,
+      StoreId: props.storeDate.StoreId,
       Steps: []
     }
     this.upStoreDate()
@@ -25,7 +25,7 @@ class StoreEditor extends React.Component {//SavePull
   render() {
     var Steps = this.state.Steps.map(function(val) {
       return (
-         <StepEdit key={Date.now()+val.StepId} stepid={val.StepId} text={val.Text}/>
+         <StepEdit key={Date.now()+val.StepId} stepId={val.StepId} text={val.Text}/>
        );
     }.bind(this))
     return (
