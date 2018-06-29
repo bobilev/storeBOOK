@@ -9,11 +9,11 @@ import (
 
 func dbConnect() *sql.DB{
 	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL_CHATBOOK"))
-	checkErr(err)
+	checkErr(err,"dbConnect")
 	return db
 }
-func checkErr(err error) {
+func checkErr(err error,nameMethod string) {
 	if err != nil {
-		log.Println("===========[Err]========\n",err)
+		log.Println(nameMethod,"===========[Err]========\n",err)
 	}
 }

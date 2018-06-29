@@ -13,14 +13,14 @@ func SelectSteps(storeid string) []dbtypes.Step{
 
 	fmt.Println("DB ->",storeid)
 	res, err := db.Query("SELECT id,storeid,stepid,text,media,answer,typedoc,accesskey FROM steps WHERE storeid=$1 ORDER BY id ASC",storeid)
-	checkErr(err)
+	checkErr(err,"SelectSteps(SELECT)")
 	var Lists []dbtypes.Step
 	for res.Next() {
 		var answer []string
 
 		var Step dbtypes.Step
 		err = res.Scan(&Step.Id,&Step.StoreId,&Step.StepId,&Step.Text,&Step.Media,pq.Array(&answer),&Step.TypeDoc,&Step.AccessKey)
-		checkErr(err)
+		checkErr(err,"SelectSteps(Scan)")
 
 		for _,val := range answer {
 			array := strings.Split(val,"|")
