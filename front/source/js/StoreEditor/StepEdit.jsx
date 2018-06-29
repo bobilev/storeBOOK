@@ -7,22 +7,40 @@ class StepEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: props.text
-
+      textStep: props.step.Text,
+      answers: props.step.Answers
     }
 
   }
   render() {
-    let { text } = this.state
-    let textStep = text
+    let { textStep,answers } = this.state
+    let AddStep
+    if(answers.length === 0){
+      AddStep =
+      <Button id="btnAddStep" variant="fab" color="primary">
+        <AddIcon />
+      </Button>
+    }
+
+
+    let AnswersPull
+    if(answers.legth !== 0) {
+      AnswersPull = answers.map(function(val){
+        return (
+          <Button key={Date.now()+val.NextStep} id=""  variant="raised" size="large" color="primary">
+            {val.Text}
+          </Button>
+        )
+      }.bind(this))
+    }
+
     return (
-      <div className="stepEdit" >
+      <div className="stepEdit">
         <Paper className="paperStoreEdit" contentEditable={true} suppressContentEditableWarning={true}>
           <p>{textStep}</p>
         </Paper>
-        <Button id="btnAddStep" variant="fab" color="primary">
-          <AddIcon />
-        </Button>
+        {AddStep}
+        {AnswersPull}
       </div>
     );
   }
