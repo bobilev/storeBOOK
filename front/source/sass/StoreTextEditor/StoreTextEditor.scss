@@ -5,7 +5,7 @@
 }
 .stepEdit {
   // width: 680px;
-  // margin: 20px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -44,6 +44,7 @@
 .paperStoreEdit {
   width: 640px;
   padding: 20px;
+  // margin-bottom: 20px;
   outline: 1px solid #fff;
   line-height: 1.3;
   font-size: 19px;
@@ -55,4 +56,18 @@
 #btnAddStep {
   margin: 15px;
   display: none;
+}
+#btnAnswer {
+  background-color: #BBDEFB;
+  // background-color: #6590c7;
+  // color: #fff;
+  justify-content: flex-start;
+  margin: 10px 0 10px 0;
+  &:first-of-type {
+    margin-top: 0;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
 }
