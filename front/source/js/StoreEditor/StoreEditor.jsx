@@ -23,27 +23,27 @@ class StoreEditor extends React.Component {//SavePull
       console.log("all steps",res)
     })
   }
-  onAddStep = (stepNum,textAnswer) => {//->SavePull
-    // this.setState({
-    //   Steps: this.
-    // })
-    // this.setState({
-      // Steps: [...this.state.Steps[stepNum].Answers, textAnswer]
-    // })
-    // let newO = this.state.Steps[stepNum].Answers.push(textAnswer)
+  onAddStep = (stepNum,textAnswer,nextStep) => {//->SavePull
     let newSteps = this.state.Steps
 
     newSteps[stepNum].Answers = newSteps[stepNum].Answers || []
 
     newSteps[stepNum].Answers.push(textAnswer)
+    newSteps.push(this.NewStep(nextStep))
     console.log("NewAddStep",stepNum,textAnswer)
     console.log("newSteps",newSteps)
     this.setState({
       Steps: newSteps
     })
-    // this.state.Steps[stepNum].Answers.push(textAnswer)
-    //
-    // console.log(newMas)
+  }
+  NewStep = (nextStep) => {
+    return {
+      StoreId: this.state.StoreId,
+      StepId: nextStep,
+      Media: 0,
+      Text: "",
+      Answers: []
+    }
   }
   render() {
     const { StoreName } = this.state

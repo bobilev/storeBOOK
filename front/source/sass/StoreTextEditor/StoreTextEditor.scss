@@ -10,10 +10,14 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  &:hover #btnAddStep{
+    &:hover #btnAddStep {
         display: block;
     }
+    &:hover #btnAddStepFix {
+        display: none;
+    }
 }
+
 .StoreEditorContent {
   width: 720px;
   height: 100vh;
@@ -61,13 +65,17 @@
   font-size: 19px;
   color: rgba(0, 0, 0, 0.75);
   font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased
-
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 #btnAddStep {
   margin: 15px;
   display: none;
   background-color: #BBDEFB;
+}
+#btnAddStepFix {
+  height: 70px;
+  width: 100%;
+  display: block;
 }
 #btnAnswer {
   background-color: #BBDEFB;

@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { isEmpty } from '../util.js'
 
 class StepEdit extends React.Component {
   constructor(props) {
@@ -14,12 +15,14 @@ class StepEdit extends React.Component {
     this.onAddStep = this.onAddStep.bind(this)
 
   }
-  onAddStep = (event) => {//->SavePull
-    event.preventDefault();
-    console.log("onAddStep")
+  onAddStep = () => {//->SavePull
     let { stepId } = this.state
     let newStepId = Number(stepId)+1
-    this.props.onAddStep(Number(this.props.indexArray),{"NextStep":newStepId,"Text":"Дальше"})
+    this.props.onAddStep(
+      this.props.indexArray,//какой элемент менять
+      {"NextStep":newStepId.toString(),"Text":"Дальше"},//новый ансвер
+      newStepId.toString()//StepId для нового Step
+    )
   }
   onEditTextStep = () => {//->SavePull
 
@@ -30,16 +33,18 @@ class StepEdit extends React.Component {
   render() {
     let { stepId,textStep,answers } = this.state
     let AddStep
-    if(answers == null){
+    if(answers == null || isEmpty(answers)){
+      console.log(stepId,"AddStep",isEmpty(answers),answers === null)
       AddStep =
-      <Button id="btnAddStep" variant="fab" onClick={this.onAddStep}>
+      <Button key={Date.now()+stepId} id="btnAddStep" variant="fab" onClick={this.onAddStep}>
         <AddIcon />
       </Button>
     }
 
 
     let AnswersPull
-    if(answers != null) {
+    if(answers != null && !isEmpty(answers)) {
+      console.log(stepId,"AnswersPull",answers !== null,!isEmpty(answers))
       AnswersPull = answers.map(function(val){
         return (
           <Button key={Date.now()+val.NextStep} id="btnAnswer" variant="raised" size="large" fullWidth={true}>
@@ -59,6 +64,10 @@ class StepEdit extends React.Component {
           {AnswersPull}
         </Paper>
         {AddStep}
+        {
+          (answers == null || isEmpty(answers))?<div id="btnAddStepFix"></div>: ""
+        }
+
       </div>
     );
   }
