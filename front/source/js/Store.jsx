@@ -51,7 +51,6 @@ class Store extends Component {
         </div>
 
         <Drawer
-          id="StoreEditorFix"
           anchor="bottom"
           open={storeEdit}
         >
