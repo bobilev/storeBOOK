@@ -59,7 +59,8 @@ class StepEdit extends React.Component {
     return (
       <div className="stepEdit">
         <div></div>
-        <Paper className="paperStoreEdit" elevation={8}>
+        <Paper className="paperStoreEdit" elevation={8} contentEditable={true}
+        suppressContentEditableWarning={true}>
           <ContentEditable html={textStep} onChange={this.onEditTextStep} />
         </Paper>
         <Paper className="paperStoreEdit" elevation={8}>
