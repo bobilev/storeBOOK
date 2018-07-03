@@ -12,7 +12,7 @@ func SelectSteps(storeid string) []dbtypes.Step{
 	defer db.Close()
 
 	fmt.Println("DB ->",storeid)
-	res, err := db.Query("SELECT id,storeid,stepid,text,media,answer,typedoc,accesskey FROM steps WHERE storeid=$1 ORDER BY id ASC",storeid)
+	res, err := db.Query("SELECT id,storeid,stepid,text,media,answer,typedoc,accesskey FROM steps WHERE storeid=$1 ORDER BY stepid::text::integer",storeid)
 	checkErr(err,"SelectSteps(SELECT)")
 	var Lists []dbtypes.Step
 	for res.Next() {
