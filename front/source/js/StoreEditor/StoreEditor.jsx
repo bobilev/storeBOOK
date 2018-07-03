@@ -11,7 +11,7 @@ class StoreEditor extends React.Component {//SavePull
       StoreName: props.storeDate.Name,
       Steps: []
     }
-    this.upStoreDate()
+
   }
   upStoreDate = () => {
     console.log("upStoreDate")
@@ -45,6 +45,7 @@ class StoreEditor extends React.Component {//SavePull
       Answers: []
     }
   }
+
   render() {
     const { StoreName } = this.state
     var Steps = this.state.Steps.map(function(val,index) {
@@ -69,6 +70,9 @@ class StoreEditor extends React.Component {//SavePull
         </div>
       </div>
     );
+  }
+  componentDidMount() {
+    this.upStoreDate()
   }
 }
 

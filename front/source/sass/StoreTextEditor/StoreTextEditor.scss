@@ -60,12 +60,14 @@
 .paperStoreEdit {
   width: 640px;
   padding: 20px;
-  outline: 1px solid #fff;
-  line-height: 1.3;
-  font-size: 19px;
-  color: rgba(0, 0, 0, 0.75);
-  font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: subpixel-antialiased;
+  p {
+    outline: 1px solid #fff;
+    line-height: 1.3;
+    font-size: 19px;
+    color: rgba(0, 0, 0, 0.75);
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
 }
 #btnAddStep {
   margin: 15px;

@@ -2,6 +2,7 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import ContentEditable from './ContentEditable.jsx'
 import { isEmpty } from '../util.js'
 
 class StepEdit extends React.Component {
@@ -9,7 +10,7 @@ class StepEdit extends React.Component {
     super(props);
     this.state = {
       stepId: props.step.StepId,
-      textStep: props.step.Text,
+      textStep: props.step.Text != ""? props.step.Text:"<br>",
       answers: props.step.Answers
     }
     this.onAddStep = this.onAddStep.bind(this)
@@ -24,8 +25,9 @@ class StepEdit extends React.Component {
       newStepId.toString()//StepId для нового Step
     )
   }
-  onEditTextStep = () => {//->SavePull
-
+  onEditTextStep = (event) => {//->SavePull
+    this.setState({textStep: event.target.value})
+    console.log("onEditTextStep")
   }
   onEditTextAnswer = () => {//->SavePull
 
@@ -57,8 +59,8 @@ class StepEdit extends React.Component {
     return (
       <div className="stepEdit">
         <div></div>
-        <Paper className="paperStoreEdit" contentEditable={true} suppressContentEditableWarning={true} elevation={8}>
-          <p>{textStep}</p>
+        <Paper className="paperStoreEdit" elevation={8}>
+          <ContentEditable html={textStep} onChange={this.onEditTextStep} />
         </Paper>
         <Paper className="paperStoreEdit" elevation={8}>
           {AnswersPull}
