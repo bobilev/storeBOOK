@@ -56,13 +56,14 @@ class StepEdit extends React.Component {
         )
       }.bind(this))
     }
+    var pStyle = (isEmpty(Answers))? {display: 'none'}:{display: 'block'}
 
     return (
       <div className="stepEdit">
         <Paper className="paperStoreEdit" elevation={8}>
           <ContentEditable html={Text} onChange={this.onEditTextStep} />
         </Paper>
-        <Paper className="paperStoreEdit" elevation={8}>
+        <Paper className="paperStoreAnswers" elevation={8} style={pStyle}>
           {AnswersPull}
         </Paper>
         {AddStep}

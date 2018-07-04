@@ -75,6 +75,12 @@
     -webkit-font-smoothing: subpixel-antialiased;
   }
 }
+.paperStoreAnswers {
+  width: 640px;
+  padding: 20px;
+  outline: 1px solid #fff;
+  word-wrap: break-word;
+}
 #btnAddStep {
   margin: 15px;
   display: none;
