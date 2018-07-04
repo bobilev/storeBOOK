@@ -1,5 +1,6 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '@material-ui/core/AppBar'
+import Button from '@material-ui/core/Button'
 import StepEdit from './StepEdit.jsx'
 import { fecthapi } from '../fetchapi.js'
 
@@ -9,7 +10,8 @@ class StoreEditor extends React.Component {//SavePull
     this.state = {
       StoreId: props.storeDate.StoreId,
       StoreName: props.storeDate.Name,
-      Steps: []
+      Steps: [],
+      SavePull: []
     }
 
   }
@@ -57,9 +59,22 @@ class StoreEditor extends React.Component {//SavePull
       <div id='StoreEditor'>
         <div className='StoreEditorContent'>
           <div id="upBarStoreEdit">
-            <div>{StoreName}</div>
-            <div>+ 18</div>
-            <div>сохранить</div>
+            <div>{StoreName} + 18</div>
+            
+            <Button
+              className="btnTabNext"
+
+              variant="raised"
+              color="primary">
+              Сохранить
+            </Button>
+            <Button
+              className="btnTabNext"
+
+              variant="raised"
+              color="primary">
+              Отмена
+            </Button>
             <div className="upBarStoreEditClose">
               <img src='/dist/icon/close.png' onClick={this.props.closeStoreEdit} />
             </div>

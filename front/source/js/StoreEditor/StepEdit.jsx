@@ -9,45 +9,46 @@ class StepEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stepId: props.step.StepId,
-      textStep: props.step.Text != ""? props.step.Text:"<br>",
-      answers: props.step.Answers
+      // stepId: props.step.StepId,
+      // textStep: props.step.Text != ""? props.step.Text:"<br>",
+      // answers: props.step.Answers
     }
-    this.onAddStep = this.onAddStep.bind(this)
+
 
   }
   onAddStep = () => {//->SavePull
-    let { stepId } = this.state
-    let newStepId = Number(stepId)+1
-    this.props.onAddStep(
-      this.props.indexArray,//какой элемент менять
-      {"NextStep":newStepId.toString(),"Text":"Дальше"},//новый ансвер
-      newStepId.toString()//StepId для нового Step
-    )
+    // let { stepId } = this.state
+    // let newStepId = Number(stepId)+1
+    // this.props.onAddStep(
+    //   this.props.indexArray,//какой элемент менять
+    //   {"NextStep":newStepId.toString(),"Text":"Дальше"},//новый ансвер
+    //   newStepId.toString()//StepId для нового Step
+    // )
   }
   onEditTextStep = (event) => {//->SavePull
-    this.setState({textStep: event.target.value})
+    // this.setState({textStep: event.target.value})
+    // this.props.ChangeStep({method: '',stepId: '',text:'',answer:[]})
     console.log("onEditTextStep")
   }
   onEditTextAnswer = () => {//->SavePull
 
   }
   render() {
-    let { stepId,textStep,answers } = this.state
+    let { StepId,Text,Answers } = this.props.step
     let AddStep
-    if(answers == null || isEmpty(answers)){
-      console.log(stepId,"AddStep",isEmpty(answers),answers === null)
+    if(Answers == null || isEmpty(Answers)){
+      console.log(StepId,"AddStep",isEmpty(Answers),Answers === null)
       AddStep =
-      <Button key={Date.now()+stepId} id="btnAddStep" variant="fab" onClick={this.onAddStep}>
+      <Button key={Date.now()+StepId} id="btnAddStep" variant="fab" onClick={this.onAddStep}>
         <AddIcon />
       </Button>
     }
 
 
     let AnswersPull
-    if(answers != null && !isEmpty(answers)) {
-      console.log(stepId,"AnswersPull",answers !== null,!isEmpty(answers))
-      AnswersPull = answers.map(function(val){
+    if(Answers != null && !isEmpty(Answers)) {
+      console.log(StepId,"AnswersPull",Answers !== null,!isEmpty(Answers))
+      AnswersPull = Answers.map(function(val){
         return (
           <Button key={Date.now()+val.NextStep} id="btnAnswer" variant="raised" size="large" fullWidth={true}>
             {val.Text}
@@ -58,17 +59,15 @@ class StepEdit extends React.Component {
 
     return (
       <div className="stepEdit">
-        <div></div>
-        <Paper className="paperStoreEdit" elevation={8} contentEditable={true}
-        suppressContentEditableWarning={true}>
-          <ContentEditable html={textStep} onChange={this.onEditTextStep} />
+        <Paper className="paperStoreEdit" elevation={8}>
+          <ContentEditable html={Text} onChange={this.onEditTextStep} />
         </Paper>
         <Paper className="paperStoreEdit" elevation={8}>
           {AnswersPull}
         </Paper>
         {AddStep}
         {
-          (answers == null || isEmpty(answers))?<div id="btnAddStepFix"></div>: ""
+          (Answers == null || isEmpty(Answers))?<div id="btnAddStepFix"></div>: ""
         }
 
       </div>
