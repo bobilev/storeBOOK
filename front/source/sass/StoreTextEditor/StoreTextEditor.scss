@@ -57,6 +57,7 @@
   margin-top: 100px;
 }
 .paperStoreEdit {
+  position: relative;
   width: 640px;
   padding: 20px;
   outline: 1px solid #fff;
@@ -64,7 +65,7 @@
   div {
     outline: 1px solid #fff;
   }
-  p {
+  div p {
     // word-wrap: break-word;
     // height: 24px;
     // outline: 1px solid #fff;
@@ -74,6 +75,15 @@
     font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: subpixel-antialiased;
   }
+}
+.paperStoreEditPlaceholder {
+  position: absolute;
+  top: 20px;
+  // padding: 20px;
+  font-size: 19px;
+  color: #c5c5c5;
+  z-index: 0;
+  pointer-events: none;
 }
 .paperStoreAnswers {
   width: 640px;

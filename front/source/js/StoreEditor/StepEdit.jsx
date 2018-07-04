@@ -57,11 +57,13 @@ class StepEdit extends React.Component {
       }.bind(this))
     }
     var pStyle = (isEmpty(Answers))? {display: 'none'}:{display: 'block'}
+    var PlaceholderStyle = (Text != "")? {display: 'none'}:{display: 'block'}
 
     return (
       <div className="stepEdit">
         <Paper className="paperStoreEdit" elevation={8}>
           <ContentEditable html={Text} onChange={this.onEditTextStep} />
+          <p className="paperStoreEditPlaceholder" style={PlaceholderStyle}>Твой рассказ начинается здесь</p>
         </Paper>
         <Paper className="paperStoreAnswers" elevation={8} style={pStyle}>
           {AnswersPull}
