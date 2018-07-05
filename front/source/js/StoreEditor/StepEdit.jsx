@@ -13,8 +13,6 @@ class StepEdit extends React.Component {
       // textStep: props.step.Text != ""? props.step.Text:"<br>",
       // answers: props.step.Answers
     }
-
-
   }
   onAddStep = () => {//->SavePull
     // let { stepId } = this.state
@@ -27,7 +25,7 @@ class StepEdit extends React.Component {
   }
   onEditTextStep = (event) => {//->SavePull
     // this.setState({textStep: event.target.value})
-    // this.props.ChangeStep({method: '',stepId: '',text:'',answer:[]})
+    this.props.ChangeStep({index: this.props.indexArray ,method: 'edittext',text: event.target.value})
     console.log("onEditTextStep")
   }
   onEditTextAnswer = () => {//->SavePull
@@ -44,7 +42,6 @@ class StepEdit extends React.Component {
       </Button>
     }
 
-
     let AnswersPull
     if(Answers != null && !isEmpty(Answers)) {
       console.log(StepId,"AnswersPull",Answers !== null,!isEmpty(Answers))
@@ -57,7 +54,7 @@ class StepEdit extends React.Component {
       }.bind(this))
     }
     var pStyle = (isEmpty(Answers))? {display: 'none'}:{display: 'block'}
-    var PlaceholderStyle = (Text != "")? {display: 'none'}:{display: 'block'}
+    var PlaceholderStyle = ( Text === "<p><br></p>")? {display: 'block'}:{display: 'none'}
 
     return (
       <div className="stepEdit">

@@ -14,14 +14,15 @@ export default class ContentEditable extends React.Component {
     }
   }
   emitChange = () => {
-    var html = this.textHTML.current.innerHTML
+    let html = this.textHTML.current.innerHTML
+    if (html === "") {
+      html = "<p><br></p>"
+      this.textHTML.current.innerHTML = "<p><br></p>"
+    }
     if (this.props.onChange && html !== this.lastHtml) {
         this.props.onChange({
           target: { value: html }
         })
-    }
-    if (html == "") {
-      this.textHTML.current.innerHTML = "<p><br></p>"
     }
     this.lastHtml = html
   }
@@ -38,11 +39,7 @@ export default class ContentEditable extends React.Component {
       )
   }
   componentDidMount() {
-    if (this.props.html == "") {
-      document.execCommand("defaultParagraphSeparator", true, "p")
-      //console.log("componentDidMount - focus")
-      this.textHTML.current.innerHTML = "<p><br></p>"
-      this.textHTML.current.focus()
-    }
+    document.execCommand("defaultParagraphSeparator", true, "p")
+    this.textHTML.current.focus()
   }
 }

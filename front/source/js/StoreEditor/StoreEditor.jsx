@@ -47,12 +47,25 @@ class StoreEditor extends React.Component {//SavePull
       Answers: []
     }
   }
+  ChangeStep = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
+    let lastSteps = this.state.Steps
+    switch (newObj.method) {
+      case 'edittext':
+          if (lastSteps[newObj.index].Text != newObj.text) {
+            lastSteps[newObj.index].Text = newObj.text
+            this.setState({
+              Steps: lastSteps
+            })
+          }
+    }
+  }
+  //Matching
 
   render() {
     const { StoreName } = this.state
     var Steps = this.state.Steps.map(function(val,index) {
       return (
-         <StepEdit key={Date.now()+val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep}/>
+         <StepEdit key={val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep} ChangeStep={this.ChangeStep}/>
        );
     }.bind(this))
     return (
@@ -60,7 +73,7 @@ class StoreEditor extends React.Component {//SavePull
         <div className='StoreEditorContent'>
           <div id="upBarStoreEdit">
             <div>{StoreName} + 18</div>
-            
+
             <Button
               className="btnTabNext"
 

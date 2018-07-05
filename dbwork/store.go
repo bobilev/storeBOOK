@@ -35,7 +35,7 @@ func CreateNewStore(name,media,author,direction,description string) int{
 	checkErr(err,"CreateNewStore(INSERT stores)")
 	log.Println("{INSERT | Add New Store}",LastInsertId)
 	if LastInsertId != 0 {
-		err1 := db.QueryRow("INSERT INTO steps(storeid,stepid,text,answer,typedoc,accesskey) values($1,'1','','{}','','') returning id",LastInsertId).Scan(&LastInsertId)
+		err1 := db.QueryRow("INSERT INTO steps(storeid,stepid,text,answer,typedoc,accesskey) values($1,'1','<p><br></p>','{}','','') returning id",LastInsertId).Scan(&LastInsertId)
 		checkErr(err1,"CreateNewStore(INSERT steps)")
 	}
 	return LastInsertId
