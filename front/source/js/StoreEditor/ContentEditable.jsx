@@ -40,7 +40,6 @@ export default class ContentEditable extends React.Component {
   }
   componentDidMount() {
     document.execCommand("defaultParagraphSeparator", false, "p")
-    document.execCommand ("insertBrOnReturn", false, "true")
     if (this.textHTML.current.innerHTML === "<p><br></p>") {
       this.textHTML.current.focus()
     }
