@@ -51,12 +51,13 @@ class StoreEditor extends React.Component {//SavePull
     let lastSteps = this.state.Steps
     switch (newObj.method) {
       case 'edittext':
-          if (lastSteps[newObj.index].Text != newObj.text) {
-            lastSteps[newObj.index].Text = newObj.text
-            this.setState({
-              Steps: lastSteps
-            })
-          }
+        console.log('edittext')
+        if (lastSteps[newObj.index].Text != newObj.text) {
+          lastSteps[newObj.index].Text = newObj.text
+          this.setState({
+            Steps: lastSteps
+          })
+        }
     }
   }
   //Matching
