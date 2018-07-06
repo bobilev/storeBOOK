@@ -28,18 +28,22 @@ export default class ContentEditable extends React.Component {
   }
   render() {
     return(
-      <div ref={this.textHTML}
+      <span ref={this.textHTML}
            onInput={this.emitChange}
            onBlur={this.emitChange}
            contentEditable
            suppressContentEditableWarning
            dangerouslySetInnerHTML={{__html: this.props.html}}
       >
-      </div>
+      </span>
       )
   }
   componentDidMount() {
-    document.execCommand("defaultParagraphSeparator", true, "p")
-    this.textHTML.current.focus()
+    document.execCommand("defaultParagraphSeparator", false, "p")
+    document.execCommand ("insertBrOnReturn", false, "true")
+    if (this.textHTML.current.innerHTML === "<p><br></p>") {
+      this.textHTML.current.focus()
+    }
+
   }
 }
