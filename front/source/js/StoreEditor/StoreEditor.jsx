@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import StepEdit from './StepEdit.jsx'
-import { fecthapi } from '../fetchapi.js'
+import { fecthapi } from '../util.js'
 
 class StoreEditor extends React.Component {//SavePull
   constructor(props) {
@@ -10,6 +10,7 @@ class StoreEditor extends React.Component {//SavePull
     this.state = {
       StoreId: props.storeDate.StoreId,
       StoreName: props.storeDate.Name,
+      OriginalSteps: [],
       Steps: [],
       SavePull: []
     }
@@ -21,7 +22,8 @@ class StoreEditor extends React.Component {//SavePull
     mapParams.set('storeid', this.state.StoreId)
     let res = fecthapi('step','getsteps',mapParams)
     res.then(res => {
-      this.setState({Steps: res})
+      let redirectResLink = res
+      this.setState({Steps: res, OriginalSteps: redirectResLink})
       console.log("all steps",res)
     })
   }
@@ -47,26 +49,34 @@ class StoreEditor extends React.Component {//SavePull
       Answers: []
     }
   }
-  ChangeStep = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
-    let lastSteps = this.state.Steps
+  ChangeStor = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
+    let {Steps, SavePull} = this.state
+    // const OriginalSteps = this.state.OriginalSteps
+    // let lastSteps = this.state.Steps
+    // let SavePull = this.state.SavePull
     switch (newObj.method) {
       case 'edittext':
-        console.log('edittext')
-        if (lastSteps[newObj.index].Text != newObj.text) {
-          lastSteps[newObj.index].Text = newObj.text
-          this.setState({
-            Steps: lastSteps
-          })
-        }
+        console.log('edittext',newObj.text)
+        // if (OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
+          console.log('newObj.text true')
+          Steps[newObj.index].Text = newObj.text
+          // SavePull.push(newObj)
+          SavePull[newObj.index] = newObj
+          this.setState({})
+        // } else {
+        //   console.log('newObj.text false')
+        //   delete SavePull[newObj.index]
+        // }
     }
   }
   //Matching
 
   render() {
+    console.log('render')
     const { StoreName } = this.state
     var Steps = this.state.Steps.map(function(val,index) {
       return (
-         <StepEdit key={val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep} ChangeStep={this.ChangeStep}/>
+         <StepEdit key={val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep} ChangeStor={this.ChangeStor}/>
        );
     }.bind(this))
     return (

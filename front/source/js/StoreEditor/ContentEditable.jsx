@@ -18,7 +18,7 @@ export default class ContentEditable extends React.Component {
     if (html === "") {
       html = "<p><br></p>"
       this.textHTML.current.innerHTML = "<p><br></p>"
-      this.textHTML.current.blur()
+      // this.textHTML.current.blur()
     }
     if (this.props.onChange && html !== this.lastHtml) {
         this.props.onChange({

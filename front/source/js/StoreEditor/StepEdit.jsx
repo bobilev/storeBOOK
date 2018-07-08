@@ -25,7 +25,7 @@ class StepEdit extends React.Component {
   }
   onEditTextStep = (event) => {//->SavePull
     // this.setState({textStep: event.target.value})
-    this.props.ChangeStep({index: this.props.indexArray ,method: 'edittext',text: event.target.value})
+    this.props.ChangeStor({index: this.props.indexArray ,method: 'edittext',text: event.target.value})
     // console.log("onEditTextStep")
   }
   onEditTextAnswer = () => {//->SavePull
@@ -35,7 +35,7 @@ class StepEdit extends React.Component {
     let { StepId,Text,Answers } = this.props.step
     let AddStep
     if(Answers == null || isEmpty(Answers)){
-      console.log(StepId,"AddStep",isEmpty(Answers),Answers === null)
+      // console.log(StepId,"AddStep",isEmpty(Answers),Answers === null)
       AddStep =
       <Button key={Date.now()+StepId} id="btnAddStep" variant="fab" onClick={this.onAddStep}>
         <AddIcon />
@@ -44,7 +44,7 @@ class StepEdit extends React.Component {
 
     let AnswersPull
     if(Answers != null && !isEmpty(Answers)) {
-      console.log(StepId,"AnswersPull",Answers !== null,!isEmpty(Answers))
+      // console.log(StepId,"AnswersPull",Answers !== null,!isEmpty(Answers))
       AnswersPull = Answers.map(function(val){
         return (
           <Button key={Date.now()+val.NextStep} id="btnAnswer" variant="raised" size="large" fullWidth={true}>

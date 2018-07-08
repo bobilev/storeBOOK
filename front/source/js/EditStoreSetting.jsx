@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Tooltip from '@material-ui/core/Tooltip'
-import { fecthapi } from './fetchapi.js'
+import { fecthapi } from './util.js'
 
 class EditStoreSetting extends Component {
   constructor(props) {
