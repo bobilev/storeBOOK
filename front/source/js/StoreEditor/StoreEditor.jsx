@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 import DoneIcon from '@material-ui/icons/Done'
 import ClearIcon from '@material-ui/icons/Clear'
 import StepEdit from './StepEdit.jsx'
-import { fecthapi, deepClonObject } from '../util.js'
+import { fecthapi, deepClonObject, isEmpty } from '../util.js'
 
 class StoreEditor extends React.Component {//SavePull
   constructor(props) {
@@ -63,7 +63,10 @@ class StoreEditor extends React.Component {//SavePull
           this.setState({Steps: Steps,SavePull: SavePull})
         } else {
           console.log('newObj.text false')
-          delete SavePull[newObj.index]
+          Steps[newObj.index].Text = newObj.text
+          // delete SavePull[newObj.index]
+          SavePull.splice(newObj.index, 1)
+          this.setState({Steps: Steps,SavePull: SavePull})
         }
 
     }
@@ -72,10 +75,25 @@ class StoreEditor extends React.Component {//SavePull
 
   render() {
     console.log('render')
-
-
+    this.btnSavePull = true
+    console.log('SavePull isEmty:',isEmpty(this.state.SavePull))
+    if (!isEmpty(this.state.SavePull)) {
+      console.log('SavePull !isEmty:',isEmpty(this.state.SavePull))
+      this.btnSavePull = false
+    }
+    let ButtonsSaveClear
+    if (!this.btnSavePull) {
+      ButtonsSaveClear =
+        <Button
+          size="small"
+          variant="outlined"
+          disabled={this.btnSavePull}>
+          {/**<ClearIcon />**/}
+          Отмена
+        </Button>
+    }
     const { StoreName } = this.state
-    var Steps = this.state.Steps.map(function(val,index) {
+    let Steps = this.state.Steps.map(function(val,index) {
       return (
          <StepEdit key={val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep} ChangeStore={this.ChangeStore}/>
        );
@@ -91,16 +109,10 @@ class StoreEditor extends React.Component {//SavePull
               size="small"
               variant="raised"
               color="primary"
-              disabled={false}>
+              disabled={this.btnSavePull}>
               Сохранить
             </Button>
-            <Button
-              id="btnSaveClear"
-              size="small"
-              variant="outlined">
-              {/**<ClearIcon />**/}
-              Отмена
-            </Button>
+            {ButtonsSaveClear}
 
             <div className="upBarStoreEditClose">
               <img src='/dist/icon/close.png' onClick={this.props.closeStoreEdit} />

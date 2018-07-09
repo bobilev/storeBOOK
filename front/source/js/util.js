@@ -18,13 +18,14 @@ async function fecthapi(apiClass,apiMethod,apiMap) {
     )
 }
 function isEmpty(obj) {
-  // for (var key in obj) {
-  //   return false;
-  // }
-  for(var prop in obj) {
-        if(obj.hasOwnProperty(prop))
-            return false;
-    }
+  console.log("isEmpty",obj)
+  for (var key in obj) {
+    return false;
+  }
+  // for(var prop in obj) {
+  //       if(obj.hasOwnProperty(prop))
+  //           return false;
+  //   }
   return true;
 }
 function deepClonObject(lastObj) {
