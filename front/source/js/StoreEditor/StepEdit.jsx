@@ -25,7 +25,7 @@ class StepEdit extends React.Component {
   }
   onEditTextStep = (event) => {//->SavePull
     // this.setState({textStep: event.target.value})
-    this.props.ChangeStor({index: this.props.indexArray ,method: 'edittext',text: event.target.value})
+    this.props.ChangeStore({index: this.props.indexArray ,method: 'edittext',text: event.target.value})
     // console.log("onEditTextStep")
   }
   onEditTextAnswer = () => {//->SavePull

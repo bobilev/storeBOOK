@@ -1,8 +1,10 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
+import DoneIcon from '@material-ui/icons/Done'
+import ClearIcon from '@material-ui/icons/Clear'
 import StepEdit from './StepEdit.jsx'
-import { fecthapi,deepClonObject } from '../util.js'
+import { fecthapi, deepClonObject } from '../util.js'
 
 class StoreEditor extends React.Component {//SavePull
   constructor(props) {
@@ -48,7 +50,7 @@ class StoreEditor extends React.Component {//SavePull
       Answers: []
     }
   }
-  ChangeStor = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
+  ChangeStore = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
     let {OriginalSteps, Steps, SavePull} = this.state
     switch (newObj.method) {
       case 'edittext':
@@ -70,32 +72,36 @@ class StoreEditor extends React.Component {//SavePull
 
   render() {
     console.log('render')
+
+
     const { StoreName } = this.state
     var Steps = this.state.Steps.map(function(val,index) {
       return (
-         <StepEdit key={val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep} ChangeStor={this.ChangeStor}/>
+         <StepEdit key={val.StepId} indexArray={index} step={val} onAddStep={this.onAddStep} ChangeStore={this.ChangeStore}/>
        );
     }.bind(this))
     return (
       <div id='StoreEditor'>
         <div className='StoreEditorContent'>
           <div id="upBarStoreEdit">
-            <div>{StoreName} + 18</div>
+            <div className="upBarStoreEditName">{StoreName} + 18</div>
 
             <Button
-              className="btnTabNext"
-
+              id="btnSavePull"
+              size="small"
               variant="raised"
-              color="primary">
+              color="primary"
+              disabled={false}>
               Сохранить
             </Button>
             <Button
-              className="btnTabNext"
-
-              variant="raised"
-              color="primary">
+              id="btnSaveClear"
+              size="small"
+              variant="outlined">
+              {/**<ClearIcon />**/}
               Отмена
             </Button>
+
             <div className="upBarStoreEditClose">
               <img src='/dist/icon/close.png' onClick={this.props.closeStoreEdit} />
             </div>
