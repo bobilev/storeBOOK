@@ -2,7 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import StepEdit from './StepEdit.jsx'
-import { fecthapi } from '../util.js'
+import { fecthapi,deepClonObject } from '../util.js'
 
 class StoreEditor extends React.Component {//SavePull
   constructor(props) {
@@ -22,8 +22,7 @@ class StoreEditor extends React.Component {//SavePull
     mapParams.set('storeid', this.state.StoreId)
     let res = fecthapi('step','getsteps',mapParams)
     res.then(res => {
-      let redirectResLink = res
-      this.setState({Steps: res, OriginalSteps: redirectResLink})
+      this.setState({Steps: res, OriginalSteps: deepClonObject(res)})
       console.log("all steps",res)
     })
   }
@@ -50,23 +49,21 @@ class StoreEditor extends React.Component {//SavePull
     }
   }
   ChangeStor = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
-    let {Steps, SavePull} = this.state
-    // const OriginalSteps = this.state.OriginalSteps
-    // let lastSteps = this.state.Steps
-    // let SavePull = this.state.SavePull
+    let {OriginalSteps, Steps, SavePull} = this.state
     switch (newObj.method) {
       case 'edittext':
-        console.log('edittext',newObj.text)
-        // if (OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
+        console.log('newObj.text [',OriginalSteps[newObj.index].Text,' - ',newObj.text,']')
+        if (OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
           console.log('newObj.text true')
           Steps[newObj.index].Text = newObj.text
           // SavePull.push(newObj)
           SavePull[newObj.index] = newObj
-          this.setState({})
-        // } else {
-        //   console.log('newObj.text false')
-        //   delete SavePull[newObj.index]
-        // }
+          this.setState({Steps: Steps,SavePull: SavePull})
+        } else {
+          console.log('newObj.text false')
+          delete SavePull[newObj.index]
+        }
+
     }
   }
   //Matching
