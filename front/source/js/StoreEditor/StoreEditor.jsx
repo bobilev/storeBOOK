@@ -72,21 +72,30 @@ class StoreEditor extends React.Component {//SavePull
     }
   }
   //Matching
+  onClickSavePull = () => {
 
+  }
+  onClickSaveClear = () => {
+    console.log('onClickSaveClear')
+    let {OriginalSteps, Steps, SavePull} = this.state
+    this.setState({Steps: deepClonObject(OriginalSteps), SavePull: []})
+  }
   render() {
     console.log('render')
     this.btnSavePull = true
-    console.log('SavePull isEmty:',isEmpty(this.state.SavePull))
+    // console.log('SavePull isEmty:',isEmpty(this.state.SavePull))
     if (!isEmpty(this.state.SavePull)) {
-      console.log('SavePull !isEmty:',isEmpty(this.state.SavePull))
+      // console.log('SavePull !isEmty:',isEmpty(this.state.SavePull))
       this.btnSavePull = false
     }
     let ButtonsSaveClear
     if (!this.btnSavePull) {
       ButtonsSaveClear =
         <Button
+          id="btnSaveClear"
           size="small"
           variant="outlined"
+          onClick={this.onClickSaveClear}
           disabled={this.btnSavePull}>
           {/**<ClearIcon />**/}
           Отмена
@@ -105,7 +114,6 @@ class StoreEditor extends React.Component {//SavePull
             <div className="upBarStoreEditName">{StoreName} + 18</div>
 
             <Button
-              id="btnSavePull"
               size="small"
               variant="raised"
               color="primary"

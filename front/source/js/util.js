@@ -18,7 +18,7 @@ async function fecthapi(apiClass,apiMethod,apiMap) {
     )
 }
 function isEmpty(obj) {
-  console.log("isEmpty",obj)
+  // console.log("isEmpty",obj)
   for (var key in obj) {
     return false;
   }
