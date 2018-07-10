@@ -62,7 +62,11 @@ class StoreEditor extends React.Component {//SavePull
         break
       case 'addstep':
         console.log("ChangeStore addstep",newObj)
-        Steps[newObj.index].Answers = Steps[newObj.index].Answers || []
+        if (isEmpty(Steps[newObj.index].Answers)) {
+          console.log("Answers пуст")
+          Steps[newObj.index].Answers = []
+        }
+        // Steps[newObj.index].Answers = Steps[newObj.index].Answers || []
         Steps[newObj.index].Answers.push(newObj.answer)
         console.log("Steps.push newObj.answer.NextStep",newObj.answer.NextStep)
         Steps.push(this.NewStep(newObj.answer.NextStep))
@@ -89,6 +93,7 @@ class StoreEditor extends React.Component {//SavePull
   onClickSaveClear = () => {
     console.log('onClickSaveClear')
     let { OriginalSteps } = this.state
+    let NewSteps
     this.setState({Steps: deepClonObject(OriginalSteps), SavePull: []})
   }
   render() {
