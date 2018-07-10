@@ -17,12 +17,20 @@ class StepEdit extends React.Component {
   onAddStep = () => {//->SavePull
     let { StepId } = this.props.step
     let newStepId = Number(StepId)+100
-    this.props.ChangeStore({index: this.props.indexArray, method: 'addstep', answer: {NextStep: newStepId.toString(), Text: "Дальше"}})
+    this.props.ChangeStore({
+      StepId : StepId,
+      Index  : this.props.indexArray,
+      Method : 'addstep',
+      Answer : {NextStep: newStepId.toString(), Text: "Дальше"}
+    })
   }
   onEditTextStep = (event) => {//->SavePull
-    // this.setState({textStep: event.target.value})
-    this.props.ChangeStore({index: this.props.indexArray, method: 'edittext', text: event.target.value})
-    // console.log("onEditTextStep")
+    this.props.ChangeStore({
+      StepId : this.props.step.StepId,
+      Index  : this.props.indexArray,
+      Method : 'edittext',
+      Text   : event.target.value
+    })
   }
   onEditTextAnswer = () => {//->SavePull
 

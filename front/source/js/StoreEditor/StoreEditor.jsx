@@ -25,54 +25,35 @@ class StoreEditor extends React.Component {//SavePull
     let res = fecthapi('step','getsteps',mapParams)
     res.then(res => {
       this.setState({Steps: res, OriginalSteps: deepClonObject(res)})
-      console.log("all steps",res)
-    })
-  }
-  onAddStep = (stepNum,textAnswer,nextStep) => {//->SavePull
-    let newSteps = this.state.Steps
-
-    newSteps[stepNum].Answers = newSteps[stepNum].Answers || []
-
-    newSteps[stepNum].Answers.push(textAnswer)
-    newSteps.push(this.NewStep(nextStep))
-    console.log("NewAddStep",stepNum,textAnswer)
-    console.log("newSteps",newSteps)
-    this.setState({
-      Steps: newSteps
+      //console.log("all steps",res)
     })
   }
   ChangeStore = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
     let {OriginalSteps, Steps, SavePull} = this.state
-    switch (newObj.method) {
+    switch (newObj.Method) {
       case 'edittext':
-      console.log("OriginalSteps.indexOf(newObj.index)",OriginalSteps.indexOf(newObj.index))
-        // console.log('newObj.text [',OriginalSteps[newObj.index].Text,' - ',newObj.text,']')
-        if ( OriginalSteps.indexOf(newObj.index) === -1 || OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
+        console.log("OriginalSteps.indexOf(newObj.Index)",OriginalSteps.indexOf(newObj.Index),newObj)
+        if ( OriginalSteps.indexOf(newObj.Index) === -1 || OriginalSteps[newObj.Index].Text !== newObj.Text) {//new Text
           console.log('newObj.text true')
-          Steps[newObj.index].Text = newObj.text
-          // SavePull.push(newObj)
-          SavePull[newObj.index] = newObj
+          Steps[newObj.Index].Text = newObj.Text
+          SavePull[newObj.Index] = newObj
           this.setState({Steps: Steps,SavePull: SavePull})
         } else {
           console.log('newObj.text false')
-          Steps[newObj.index].Text = newObj.text
-          // delete SavePull[newObj.index]
-          SavePull.splice(newObj.index, 1)
+          Steps[newObj.Index].Text = newObj.Text
+          SavePull.splice(newObj.Index, 1)//delete
           this.setState({Steps: Steps,SavePull: SavePull})
         }
         break
       case 'addstep':
         console.log("ChangeStore addstep",newObj)
-        if (isEmpty(Steps[newObj.index].Answers)) {
-          console.log("Answers пуст")
-          Steps[newObj.index].Answers = []
+        if (isEmpty(Steps[newObj.Index].Answers)) {//fix Empty object -> []
+          Steps[newObj.Index].Answers = []
         }
-        // Steps[newObj.index].Answers = Steps[newObj.index].Answers || []
-        Steps[newObj.index].Answers.push(newObj.answer)
-        console.log("Steps.push newObj.answer.NextStep",newObj.answer.NextStep)
-        Steps.push(this.NewStep(newObj.answer.NextStep))
-
-        SavePull[newObj.index] = newObj
+        Steps[newObj.Index].Answers.push(newObj.Answer)
+        console.log("Steps.push newObj.answer.NextStep",newObj.Answer.NextStep)
+        Steps.push(this.NewStep(newObj.Answer.NextStep))
+        SavePull[newObj.Index] = newObj
         this.setState({Steps: Steps,SavePull: SavePull})
         break
     }
@@ -86,7 +67,6 @@ class StoreEditor extends React.Component {//SavePull
       Answers: []
     }
   }
-  //Matching
   onClickSavePull = () => {
     console.log('onClickSavePull')
     newfecthapi()
