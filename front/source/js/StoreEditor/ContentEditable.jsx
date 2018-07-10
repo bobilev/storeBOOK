@@ -31,7 +31,7 @@ export default class ContentEditable extends React.Component {
     return(
       <span ref={this.textHTML}
            onInput={this.emitChange}
-           onBlur={this.emitChange}
+           
            contentEditable
            suppressContentEditableWarning
            dangerouslySetInnerHTML={{__html: this.props.html}}
