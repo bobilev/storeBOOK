@@ -45,8 +45,9 @@ class StoreEditor extends React.Component {//SavePull
     let {OriginalSteps, Steps, SavePull} = this.state
     switch (newObj.method) {
       case 'edittext':
+      console.log("OriginalSteps.indexOf(newObj.index)",OriginalSteps.indexOf(newObj.index))
         // console.log('newObj.text [',OriginalSteps[newObj.index].Text,' - ',newObj.text,']')
-        if (OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
+        if ( OriginalSteps.indexOf(newObj.index) === -1 || OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
           console.log('newObj.text true')
           Steps[newObj.index].Text = newObj.text
           // SavePull.push(newObj)
