@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 import DoneIcon from '@material-ui/icons/Done'
 import ClearIcon from '@material-ui/icons/Clear'
 import StepEdit from './StepEdit.jsx'
-import { fecthapi, deepClonObject, isEmpty } from '../util.js'
+import { newfecthapi, fecthapi, deepClonObject, isEmpty } from '../util.js'
 
 class StoreEditor extends React.Component {//SavePull
   constructor(props) {
@@ -41,20 +41,11 @@ class StoreEditor extends React.Component {//SavePull
       Steps: newSteps
     })
   }
-  NewStep = (nextStep) => {
-    return {
-      StoreId: this.state.StoreId,
-      StepId: nextStep,
-      Media: 0,
-      Text: "",
-      Answers: []
-    }
-  }
   ChangeStore = (newObj) => {//{index: '',method: '',stepId: '',text: '',answer: []}
     let {OriginalSteps, Steps, SavePull} = this.state
     switch (newObj.method) {
       case 'edittext':
-        console.log('newObj.text [',OriginalSteps[newObj.index].Text,' - ',newObj.text,']')
+        // console.log('newObj.text [',OriginalSteps[newObj.index].Text,' - ',newObj.text,']')
         if (OriginalSteps[newObj.index].Text !== newObj.text) {//new Text
           console.log('newObj.text true')
           Steps[newObj.index].Text = newObj.text
@@ -68,16 +59,36 @@ class StoreEditor extends React.Component {//SavePull
           SavePull.splice(newObj.index, 1)
           this.setState({Steps: Steps,SavePull: SavePull})
         }
+        break
+      case 'addstep':
+        console.log("ChangeStore addstep",newObj)
+        Steps[newObj.index].Answers = Steps[newObj.index].Answers || []
+        Steps[newObj.index].Answers.push(newObj.answer)
+        console.log("Steps.push newObj.answer.NextStep",newObj.answer.NextStep)
+        Steps.push(this.NewStep(newObj.answer.NextStep))
 
+        SavePull[newObj.index] = newObj
+        this.setState({Steps: Steps,SavePull: SavePull})
+        break
+    }
+  }
+  NewStep = (nextStep) => {
+    return {
+      StoreId: this.state.StoreId,
+      StepId: nextStep,
+      Media: 0,
+      Text: "<p><br></p>",
+      Answers: []
     }
   }
   //Matching
   onClickSavePull = () => {
-
+    console.log('onClickSavePull')
+    newfecthapi()
   }
   onClickSaveClear = () => {
     console.log('onClickSaveClear')
-    let {OriginalSteps, Steps, SavePull} = this.state
+    let { OriginalSteps } = this.state
     this.setState({Steps: deepClonObject(OriginalSteps), SavePull: []})
   }
   render() {
@@ -112,16 +123,15 @@ class StoreEditor extends React.Component {//SavePull
         <div className='StoreEditorContent'>
           <div id="upBarStoreEdit">
             <div className="upBarStoreEditName">{StoreName} + 18</div>
-
             <Button
               size="small"
               variant="raised"
               color="primary"
+              onClick={this.onClickSavePull}
               disabled={this.btnSavePull}>
               Сохранить
             </Button>
             {ButtonsSaveClear}
-
             <div className="upBarStoreEditClose">
               <img src='/dist/icon/close.png' onClick={this.props.closeStoreEdit} />
             </div>
