@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 import DoneIcon from '@material-ui/icons/Done'
 import ClearIcon from '@material-ui/icons/Clear'
 import StepEdit from './StepEdit.jsx'
-import { newfecthapi, fecthapi, deepClonObject, isEmpty } from '../util.js'
+import { FecthApiPOST, fecthapi, deepClonObject, isEmpty } from '../util.js'
 
 class StoreEditor extends React.Component {//SavePull
   constructor(props) {
@@ -69,7 +69,9 @@ class StoreEditor extends React.Component {//SavePull
   }
   onClickSavePull = () => {
     console.log('onClickSavePull')
-    newfecthapi()
+    // let mapParams = new Map()
+    // mapParams.set('storeid', deepClonObject(this.state.SavePull))
+    FecthApiPOST('step','editsteps',this.state.SavePull)
   }
   onClickSaveClear = () => {
     console.log('onClickSaveClear')

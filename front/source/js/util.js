@@ -17,31 +17,26 @@ async function fecthapi(apiClass,apiMethod,apiMap) {
       }
     )
 }
-async function newfecthapi(apiClass,apiMethod,apiMap) {
+async function FecthApiPOST(apiClass,apiMethod,apiMap) {
   let request = `http://localhost:3000/api?class=${apiClass}&method=${apiMethod}`
-  let APIDATE
-  let DateObj
-  console.log("newfecthapi apiMap", apiMap)
-  // apiMap.forEach( (value, key) => {
-  //   request +=`&${key}=${value}`
-  // });
-  // return fetch(request,{
-  //   method: "POST",
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(DateObj)
-  // })
-  //   .then(res => res.json())
-  //   .then(
-  //     (result) => {
-  //       return result
-  //     },
-  //     (error) => {
-  //       return error
-  //     }
-  //   )
+  console.log("newfecthapi apiMap json", JSON.stringify({response: apiMap}))
+  return fetch(request,{
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'text/plain; charset=utf-8'
+    },
+    body: JSON.stringify({response: apiMap})
+  })
+    .then(res => res.json())
+    .then(
+      (result) => {
+        return result
+      },
+      (error) => {
+        return error
+      }
+    )
 }
 function isEmpty(obj) {
   for (var key in obj) {
@@ -64,4 +59,4 @@ function deepClonObject(lastObj) {
   return newObj
 }
 
-export { isEmpty, fecthapi, deepClonObject }
+export { FecthApiPOST, isEmpty, fecthapi, deepClonObject }
