@@ -5,6 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/bobilev/storeBOOK/dbwork"
+	"io/ioutil"
+	"log"
+	"github.com/bobilev/storeBOOK/dbtypes"
 )
 
 func API(w http.ResponseWriter, r *http.Request) {
@@ -14,6 +17,8 @@ func API(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Cache-Control", "no-cache")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Request-Method", "GET,POST")
 
 	switch class {
 	case "account":
@@ -62,6 +67,20 @@ func API(w http.ResponseWriter, r *http.Request) {
 			res := dbwork.SelectSteps(StoreId)
 			json.NewEncoder(w).Encode(res)
 			w.WriteHeader(200)
+		case "editsteps":
+			body, err := ioutil.ReadAll(r.Body)
+			if err != nil {
+				log.Println(err)
+			}
+			var ArraySave dbtypes.ArraySavePull
+			jsonRes := []byte(body)
+			err1 := json.Unmarshal(jsonRes, &ArraySave)
+			if err1 != nil {
+				log.Println(err1)
+			}
+			//fmt.Println("ArraySavePull",ArraySave)
+			//fmt.Println("ArraySavePull",ArraySave.Response[0].StepId)
+			//fmt.Println("ArraySavePull",ArraySave.Response[1].StepId)
 		}
 
 
